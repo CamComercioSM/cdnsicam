@@ -1,12 +1,13 @@
 <?php
-$dir = '.'; // Directorio actual
-$files = scandir($dir);
+$dir = './assets'; // Directorio donde se encuentran los archivos
+$files = new RecursiveIteratorIterator(new RecursiveDirectoryIterator($dir));
 
-echo '<h1>Recursos Disponibles</h1>';
+echo '<h1>Listado de Recursos</h1>';
 echo '<ul>';
 foreach ($files as $file) {
-    if ($file != '.' && $file != '..') {
-        echo '<li><a href="'.$file.'">'.$file.'</a></li>';
+    if ($file->isFile()) {
+        $path = str_replace($dir, '', $file->getRealPath());
+        echo '<li><a href="assets' . $path . '">' . $path . '</a></li>';
     }
 }
 echo '</ul>';
