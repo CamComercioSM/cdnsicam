@@ -5,7 +5,7 @@
     
 
         {% if Config.Evento2 %}
-                {% include "evento3.html.php" %}
+                {% include "evento-pruebas.html.php" %}
         {% else %}
 
             {% if Config.eventoCONTROLASISTENCIA %}
@@ -14,6 +14,8 @@
                 {% include "escarapela.html.php" %}
             {% elseif Config.eventoENCUESTA %}
                 {% include "encuesta.html.php" %}
+            {% elseif Config.consultaEventos %}
+                {% include "consulta-eventos.html.php" %}
             {% else %}
                 {% if Config.Evento %}
                     {% include "evento.html.php" %}
