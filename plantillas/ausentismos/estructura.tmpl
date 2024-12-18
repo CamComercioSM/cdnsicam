@@ -1,0 +1,15 @@
+{% if Config.Mantenimiento %}
+    {% include "mantenimiento.html.php" %}
+{% else %}
+    {% if Config.Autorizar %}
+        {% include "autorizar.html.php" %}
+    {% elseif Config.Cancelar %}
+        {% include "cancelar.html.php" %}
+    {% elseif Config.Cerrar %}
+        {% include "cerrar.html.php" %}
+    {% elseif Config.Iniciar %}
+        {% include "iniciar.html.php" %}
+    {% else %}
+        {% include "inicio.html.php" %}
+    {% endif %}
+{% endif %}

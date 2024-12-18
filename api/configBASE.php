@@ -1,36 +1,38 @@
 <?php
+
 //Archivo de Configuracion y Variables Globales  20230501
-include 'encabezados-seguros.php';
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', TRUE);
-ini_set('display_startup_errors', TRUE);
- setlocale (LC_TIME, "es_ES");
-date_default_timezone_set('America/Bogota');
-define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
-define('DS', DIRECTORY_SEPARATOR);
-if (!defined('DIR_BASE')) {
-    define('DIR_BASE', __DIR__ . DS);
+class ConfigBASE extends Superglobales {
+    public $GoogleAnalitycsTag = "G-ZBTLK22S7Q";
+    public $GA4Tag = "G-ZBTLK22S7Q";
+    public $APP_NOMBRE = "Nombre de la APP";
+    public $APP_TITULO = "Titulo de la APP";
+    public $APP_DESCRIPCION = "Descripción de la APP.";
+    public $APP_DIR = null;
+    public $APP_URL = "https://subdomino_app.ccsm.org.co/";
+    public $APP_PLANTILLA_DIR = null;
+    public $APP_PLANTILLA_URL = null;
+    public $BASE_URL = "https://tiendasicam32.net/";
+    public $LIBRERIA_URL = URL_LIBRERIA;
+    public $BASE_PANTILLA_NOMBRE = 'basica';
+    public $BASE_PANTILLA_URL = URL_LIBRERIA . 'plantillas/';
+    public $BASE_PANTILLA_DIR = DIR_LIBRERIA . 'plantillas/';
+    public $Mantenimiento = false;
+    public $LoginColaboradores = true;
+
+    function __construct() {
+        $this->BASE_PANTILLA_DIR = DIR_LIBRERIA . 'plantillas/' . $this->BASE_PANTILLA_NOMBRE . '/';
+        $this->BASE_PANTILLA_URL = URL_LIBRERIA . 'plantillas/' . $this->BASE_PANTILLA_NOMBRE . '/';
+        $this->crearPropiedadesDatosRecibidos();
+    }
+
+    public $CCSM_NOMBRE = 'Cámara de Comercio de Santa Marta para el Magdalena';
+    public $CCSM_URL = 'https://www.ccsm.org.co';
 }
-if (!defined('DIR_LIBRERIA')) {
-    define('DIR_LIBRERIA', DIR_BASE . "libs" . DS);
-}
-if (!defined('URL_LIBRERIA')) {
-    define('URL_LIBRERIA', "https://libs.tiendasicam32.net/");
-}
-require_once DIR_BASE . 'nucleo/Superglobales.php';
-require_once DIR_BASE . 'nucleo/ConfigBASE.php';
-require_once DIR_BASE . 'nucleo/ConfigAPP.php';
-require_once DIR_LIBRERIA . 'clases/apis/ApiSICAM' . (isset($modo) ? $modo : "") . '.php';
-//Autoloads
-require_once DIR_LIBRERIA . 'vendor/autoload.php';
 //
 //
 ////
 //print_r(get_defined_constants(true)['user']);
-////echo "\n\n";
+//echo "\n\n";
 //print_r(new ConfigBASE());
-////echo "\n\n";
-//print_r(ModeloBase::consultaAPI());
-////echo "\n\n";
+//echo "\n\n";
 //die('el configBASE hasta aqui');

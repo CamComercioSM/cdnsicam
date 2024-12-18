@@ -1,5 +1,5 @@
 var tiempoInactivo = 0;
-var tiempoInactividad = 150;
+var tiempoInactividad = 300;
 var controlRecargaInactividad = null;
 function activarControlDeInactividad() {
     controlRecargaInactividad = setInterval(function () {
@@ -15,6 +15,7 @@ function activarControlDeInactividad() {
 }
 
 function validarDatosLoginColaborador(usuario, clave, funcionEXITO) {
+    clave = encodeURIComponent(clave);
     ejecutarOperacionAPP('iniciarSesionColaborador', 'Seguridad',
             "colaboradorUSUARIO=" + usuario + "&colaboradorPASSWORD=" + clave,
             function (respuesta) {
@@ -70,7 +71,7 @@ function datosSesionColaborador(funcionEXITO) {
 }
 
 inyectarCargando();
-//mostrarCargando();
+mostrarCargando();
 //ocultarCargando();
 window.onload = function () {
     ocultarCargando();
