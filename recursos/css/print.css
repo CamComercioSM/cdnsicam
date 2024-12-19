@@ -1,0 +1,128 @@
+div {
+    /*border: thin dotted gray;*/
+}
+header, footer, nav, aside {
+    display: none;
+    page-break-inside: avoid;
+}
+
+body {
+    background-image: none;
+    page-break-inside: avoid;
+}
+
+a:after {
+    content:" <" attr(href) ">";
+}
+
+a[href^=http]:after {
+    content:" <" attr(href) ">";
+}
+
+ul, img, table {
+    page-break-inside: avoid;
+}
+
+hr {
+    width: 100%!important;
+    max-width: 100%!important;
+    clear: both!important;
+}
+
+th {
+    font-weight: bold;
+    background-color: gray;
+}
+
+
+input , select , 
+.form-control, 
+.form-control:disabled, 
+.form-control[readonly] {
+    display: block;
+    max-width: 100%;
+    border: none;
+    font-size: 75%;
+    -moz-appearance: none;
+    -webkit-appearance: none;
+    appearance: none;
+    border-bottom: thin black solid!important;
+}
+
+select::-ms-expand { 
+    display: none; /* hide the default arrow in ie10 and ie11 */
+}
+
+
+.no-print, .no-print *{
+    display: none !important;
+}
+
+.form-body, 
+.form-body * , 
+.form-content, 
+.form-items {
+    background-color: transparent!important;
+    text-align: center;
+    color: black!important;
+    padding: 5px!important;
+    margin: 2px!important;
+    vertical-align: top!important;
+}
+
+.form-holder {
+    padding: 0px;
+    margin: 0px;
+}
+
+.form-group {
+    padding: 1px;
+    margin: 1px;
+    width: 100%;
+    clear: both;
+}
+.form-label {
+    float: left;
+    width: 35%;
+    padding: 1px;
+    margin: 1px;
+}
+
+.form-control {
+    width: 62%!important;
+    float: right!important;
+}
+
+
+#encabezado-impresion {
+    clear: both;
+}
+
+#logo-impresion {
+    padding: 10px!important;
+    position: relative;
+    text-align: center;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    vertical-align: top!important;
+    float: left;
+    min-height: 65%;
+    width: 48%;
+}
+
+
+/*#logo-impresion img {*/
+/*    max-height: 120px;*/
+/*}*/
+
+#texto-impresion {
+    float: right;
+    width: 48%;
+}
+
+#datos-personales-impresion {
+    width: 100%;
+    max-width: 100%;
+    clear: both;
+}

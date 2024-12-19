@@ -1,0 +1,261 @@
+/*Colores de la CCSM*/
+/*
+
+Negro ________________________________
+#1c1b15
+rgb(28, 27, 21)
+#1c1b15
+rgb(28, 27, 21)
+#383434
+rgb(56, 52, 52)
+#251f1d
+
+Verde ________________________________
+#7cbb28
+rgb(124, 187, 40)
+#7ebb2c
+#94c844
+rgb(148, 200, 68)
+#4c7c54
+rgb(76, 124, 84)
+
+Azul ________________________________
+#1f4389
+#1f4289
+rgb(31, 67, 137)
+#234289
+#98a7cb
+
+Amarillo ________________________________
+#f2b709
+#fde378
+#f5b807
+#f1b709
+#eee9b7
+rgb(241, 183, 9)
+
+Rojo ________________________________
+#762c24
+#772c24
+rgb(119, 44, 36) 
+#782e22
+#943523
+rgb(148, 53, 35)
+
+Gris
+#898786
+
+#F4C404
+Golden
+#FCE37C
+Ripe Pineapple
+#143583
+Bavarian Blue
+#6B8D44
+Athonian Camoshade
+#967802
+Bhūrā Brown
+#5C342C
+Redwood
+
+*/
+
+:root{
+    --logo-azul-fuerte: #103582;
+    --azul-bavarian: #143583;
+    --azul-tenue: #2f4e95;    
+    --azul: #284A9D;
+    --azul-cielo: #325097;
+    --logo-azul-suave: #325097;
+    --azul_suave: #98a7cb;
+    --azul-gris: #474F63;
+
+    --logo-verde-fuerte: #67a32d;
+    --verde-athonian: #6b8d44;
+    --verde-limon: #85c320;
+    --logo-verde-suave: #85c320;
+    --verde-amarillo: #c5bb14;
+    
+    
+    --logo-amarillo-fuerte: #ee9a0b;
+    --naranja: #ee9a0b;
+    --dorado: #f4c404;
+    --piña: #fce37c;
+    --amarillo: #f7c600;
+    --logo-amarillo-suave: #f7c600;
+    
+    --logo-rojo-fuerte: #5b251b;
+    --marron: #967802;
+    --rojo-madera: #5c342c;
+    --rojo-gris: #51474f;
+    --logo-rojo-suave: #872a1b;
+    
+    --gris-beige: #b7b5ac;
+    --gris: #d1d1d0;
+    --gris-claro: #ECEEFF;
+
+
+    --blanco-1: #fefefe;
+    --blanco: #ffffff;
+
+}
+.colorAZUL{
+    color:var(--azul)
+}
+.colorGRIS{
+    color:var(--gris)
+}
+.colorRESALTAR{
+    color:#d0a616
+}
+
+
+@font-face {
+    font-family: 'Tw Cen MT';
+    font-style: normal;
+    font-weight: normal;
+    src: url('https://libs.tiendasicam32.net/fonts/TwCenMT.woff') format('woff');
+}
+@font-face {
+    font-family: 'amplesoft_probold';
+    src: url('https://libs.tiendasicam32.net/fonts/ample_soft_pro_bold-webfont.woff2') format('woff2'),
+        url('https://libs.tiendasicam32.net/fonts/ample_soft_pro_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'amplesoft_promedium';
+    src: url('https://libs.tiendasicam32.net/fonts/ample_soft_pro_medium-webfont.woff2') format('woff2'),
+        url('https://libs.tiendasicam32.net/fonts/ample_soft_pro_medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'amplesoft_proregular';
+    src: url('https://libs.tiendasicam32.net/fonts/ample_soft_pro-webfont.woff2') format('woff2'),
+        url('https://libs.tiendasicam32.net/fonts/ample_soft_pro-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'helveticaneuemedium';
+    src: url('https://libs.tiendasicam32.net/fonts/helveticaneue-medium-webfont.woff2') format('woff2'),
+        url('https://libs.tiendasicam32.net/fonts/helveticaneue-medium-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+body {
+    color: black;
+}
+
+body,
+h1, h2, h3, h4, h5 {
+    font-family: 'Tw Cen MT'!important;
+}
+
+/*.demoHeaders {
+    margin-top: 2em;
+}
+#dialog-link {
+    padding: .4em 1em .4em 20px;
+    text-decoration: none;
+    position: relative;
+}
+#dialog-link span.ui-icon {
+    margin: 0 5px 0 0;
+    position: absolute;
+    left: .2em;
+    top: 50%;
+    margin-top: -8px;
+}
+#icons {
+    margin: 0;
+    padding: 0;
+}
+#icons li {
+    margin: 2px;
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+    float: left;
+    list-style: none;
+}
+#icons span.ui-icon {
+    float: left;
+    margin: 0 4px;
+}
+.fakewindowcontain .ui-widget-overlay {
+    position: absolute;
+}
+select {
+    width: 200px;
+}
+
+.a-cursor{
+    cursor:pointer; 
+}
+
+.form-content input {
+    color: #000000!important;
+    font-weight: bold;
+}
+.form-content .page-links a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.input-monto {
+    color: #155724!important;
+    font-size: 175%!important;
+    font-weight: bold!important;
+}*/
+
+@media (max-width: 600px) {
+    .img-holder  {
+        height: auto!important;
+        width: 100%!important;
+    }
+}
+@media  (min-width: 600px) and (max-width: 1024px) {
+    .img-holder  {
+        position: fixed;
+        height: 100%!important;
+        width: 35%!important;
+    }
+    .form-holder {
+        margin-left:35%;
+        width: 70%;
+        padding: 1% 2%;
+        background-color: #44C97D;
+    }
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
+    background-color: silver;
+    padding: 10px;
+    line-height: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,85 @@
+.tg {
+    border-collapse:collapse;
+    border-spacing:0;
+}
+ .tg td{
+    border-color:black;
+    border-style:solid;
+    border-width:1px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+     overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+}
+ .tg th{
+    border-color:black;
+    border-style:solid;
+    border-width:1px;
+    font-family:Arial, sans-serif;
+    font-size:14px;
+     font-weight:normal;
+    overflow:hidden;
+    padding:10px 5px;
+    word-break:normal;
+}
+ .tg .tg-8m2v{
+    background-color:#e0dcdc;
+    border-color:#000000;
+    color:#000000;
+    font-weight:bold;
+    text-align:center;
+    vertical-align:middle
+}
+ .tg .tg-pjk6{
+    border-color:#000000;
+    color:#000000;
+    text-align:left;
+    vertical-align:top
+}
+ .tg .tg-9bd3{
+    background-color:#e0dcdc;
+    border-color:#000000;
+    color:#000000;
+    font-weight:bold;
+    text-align:center;
+    vertical-align:top
+}
+
+
+.div-con-borde
+{
+    border: ridge thin black;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.grupo-div-con-borde  div {
+    border: ridge thin black;
+    text-align: center;
+}
+
+.fondo-encabeazdo
+{
+    height: 45px;
+    background-color: #a8a4a4;
+    font-weight: bold;
+    padding-top: 0.6%;
+}
+
+.linea {
+  border-bottom: 1px solid black;
+  height: 2px;
+  padding: 0;
+  margin: 20px auto 0 auto;
+}
+
+   .container
+    {
+        border-width: 4px;
+            border-style: double;
+            Border-color:black;
+    }
+
+    

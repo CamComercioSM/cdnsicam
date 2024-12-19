@@ -1,0 +1,450 @@
+:root {
+    --azul: #2f4a9f;
+    --azul_fuerte: #284A9D;
+    --azul_suave: #98a7cb;
+    --gris: #ECEEFF;
+    /* CSS HEX */
+    --blue: #001effff;
+    --risd-blue: #3b52ffff;
+    --neon-blue: #586cffff;
+    --neon-blue-2: #6779ffff;
+    --tropical-indigo: #7585ffff;
+    --vista-blue: #939fffff;
+    --periwinkle: #b0b8ffff;
+    --periwinkle-2: #bfc5ffff;
+    --periwinkle-3: #cdd2ffff;
+    --lavender-web: #eaebffff;
+
+    /* CSS HSL */
+    --blue: hsla(233, 100%, 50%, 1);
+    --risd-blue: hsla(233, 100%, 62%, 1);
+    --neon-blue: hsla(233, 100%, 67%, 1);
+    --neon-blue-2: hsla(233, 100%, 70%, 1);
+    --tropical-indigo: hsla(233, 100%, 73%, 1);
+    --vista-blue: hsla(233, 100%, 79%, 1);
+    --periwinkle: hsla(234, 100%, 85%, 1);
+    --periwinkle-2: hsla(234, 100%, 87%, 1);
+    --periwinkle-3: hsla(234, 100%, 90%, 1);
+    --lavender-web: hsla(237, 100%, 96%, 1);
+
+    /* SCSS HEX */
+    $blue: #001effff;
+    $risd-blue: #3b52ffff;
+    $neon-blue: #586cffff;
+    $neon-blue-2: #6779ffff;
+    $tropical-indigo: #7585ffff;
+    $vista-blue: #939fffff;
+    $periwinkle: #b0b8ffff;
+    $periwinkle-2: #bfc5ffff;
+    $periwinkle-3: #cdd2ffff;
+    $lavender-web: #eaebffff;
+
+    /* SCSS HSL */
+    $blue: hsla(233, 100%, 50%, 1);
+    $risd-blue: hsla(233, 100%, 62%, 1);
+    $neon-blue: hsla(233, 100%, 67%, 1);
+    $neon-blue-2: hsla(233, 100%, 70%, 1);
+    $tropical-indigo: hsla(233, 100%, 73%, 1);
+    $vista-blue: hsla(233, 100%, 79%, 1);
+    $periwinkle: hsla(234, 100%, 85%, 1);
+    $periwinkle-2: hsla(234, 100%, 87%, 1);
+    $periwinkle-3: hsla(234, 100%, 90%, 1);
+    $lavender-web: hsla(237, 100%, 96%, 1);
+
+    /* SCSS RGB */
+    $blue: rgba(0, 30, 255, 1);
+    $risd-blue: rgba(59, 82, 255, 1);
+    $neon-blue: rgba(88, 108, 255, 1);
+    $neon-blue-2: rgba(103, 121, 255, 1);
+    $tropical-indigo: rgba(117, 133, 255, 1);
+    $vista-blue: rgba(147, 159, 255, 1);
+    $periwinkle: rgba(176, 184, 255, 1);
+    $periwinkle-2: rgba(191, 197, 255, 1);
+    $periwinkle-3: rgba(205, 210, 255, 1);
+    $lavender-web: rgba(234, 235, 255, 1);
+
+    /* SCSS Gradient */
+    $gradient-top: linear-gradient(0deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+    $gradient-right: linear-gradient(90deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+    $gradient-bottom: linear-gradient(180deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+    $gradient-left: linear-gradient(270deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+    $gradient-top-right: linear-gradient(45deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+    $gradient-bottom-right: linear-gradient(135deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+    $gradient-top-left: linear-gradient(225deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+    $gradient-bottom-left: linear-gradient(315deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+    $gradient-radial: radial-gradient(#001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+}
+.colorAZUL {
+    color: var(--azul);
+}
+.colorGRIS {
+    color: var(--gris);
+}
+.colorRESALTAR {
+    color: #D0A616;
+}
+body {
+    font-family: 'Galano Grotesque', sans-serif;
+    background-color: var(--azul);
+    color: #FFFFFF;
+}
+
+body.administrador main {
+    font-family: 'Galano Grotesque', sans-serif;
+    background-color: #FFFFFF;
+    color: var(--azul);
+}
+
+
+/*Enlaces Link*/
+a {
+    transition: 0.5s all;
+    -webkit-transition: 0.5s all;
+    -moz-transition: 0.5s all;
+    -o-transition: 0.5s all;
+    -ms-transition: 0.5s all;
+    text-decoration: none;
+    outline: none;
+    color: ghostwhite;
+    font-weight: 600;
+}
+a:active,
+a:visited,
+a:focus,
+a:hover {
+    font-family: 'Galano Grotesque Bold', sans-serif;
+    color: white;
+}
+.nav-link,
+.navbar-dark .navbar-nav .nav-link {
+    color: ghostwhite;
+}
+.navbar-nav .nav-link {
+    font-family: 'Galano Grotesque ExtraBold', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.navbar-nav .nav-link.active {
+    font-family: 'Galano Grotesque ExtraBold', sans-serif;
+}
+.nav-link:active,
+.nav-link:visited,
+.navbar-dark .navbar-nav .nav-link:active,
+.navbar-dark .navbar-nav .nav-link:visited
+{
+    font-family: 'Galano Grotesque ExtraBold', sans-serif;
+    font-weight: bold;
+    color: var(--gris);
+}
+.nav-link:hover,
+.nav-link:focus,
+.navbar-dark .navbar-nav .nav-link:hover,
+.navbar-dark .navbar-nav .nav-link:focus
+{
+    font-family: 'Galano Grotesque ExtraBold', sans-serif;
+    font-weight: bold;
+    color: white;
+    text-decoration: underline;
+}
+
+footer a:active,
+footer a:visited,
+footer .nav-link:active,
+footer .nav-link:visited {
+    color: var(--azul);
+}
+footer .pqr a,
+footer .pqr a:active,
+footer .pqr a:visited,
+footer .pqr a:focus,
+footer .pqr a:hover {
+    color: white;
+}
+footer .enlaces-externos a {
+    color: var(--azul);
+}
+footer .enlaces-externos a:active,
+footer .enlaces-externos a:visited,
+footer .enlaces-externos a:focus,
+footer .enlaces-externos a:hover {
+    color: var(--azul_suave);
+}
+
+/*////titulos*/
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+    font-family: 'Galano Grotesque', sans-serif;
+    text-transform: uppercase;
+    color: #1f4389;
+    text-shadow: 2px 1px 3px rgba(12,12,12,0.79);
+}
+
+h1 {
+    font-size: 3.7em;
+}
+h2 {
+    font-size: 2em;
+}
+h3 {
+    font-size: 1em;
+}
+h6 {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6 {
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+
+.activacion h1,
+.activacion h2,
+.activacion h3,
+.activacion h4,
+.activacion h5,
+.activacion h6 {
+    font-family: 'Galano Grotesque Bold', sans-serif;
+}
+
+.modal h1,
+.modal h2,
+.modal h3,
+.modal h4,
+.modal h5,
+.modal h6 {
+    font-family: 'Galano Grotesque Bold', sans-serif;
+    color: var(--azul);
+}
+
+
+.administrador #login h1,
+.administrador #login h2,
+.administrador #login h3,
+.administrador #login h4,
+.administrador #login h5,
+.administrador #login h6 {
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.administrador main h1,
+.administrador main h2,
+.administrador main h3,
+.administrador main h4,
+.administrador main h5,
+.administrador main h6 {
+    text-transform: uppercase;
+    color: var(--azul);
+}
+
+
+
+
+/*Parrafos*/
+p {
+    font-family: 'Galano Grotesque';
+    letter-spacing: 1px;
+    text-align: justify;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+p.lead {
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
+    -ms-hyphens: auto;
+    hyphens: auto;
+}
+input[type="text"], input[type="email"], input[type="number"],
+textarea {
+    background-color : #EAEAEA;
+}
+label.form-label {
+    font-family: 'Galano Grotesque';
+    color: var(--azul);
+    font-size: 18px;
+}
+
+
+.modal .modal-header {
+    color: #5E54A4;
+}
+.modal .modal-body {
+    color: var(--azul);
+}
+.modal .modal-body {
+    color: var(--azul);
+}
+
+.card {
+    color: black;
+}
+
+footer {
+    background-color: var(--gris);
+}
+footer .nav-link {
+    color: var(--azul);
+}
+footer .nav-link:hover {
+    color: var(--azul);
+    font-weight: bold;
+}
+footer .pqr .card {
+    width: 200px;
+    border-radius: 1.1em;
+    padding: 0px;
+    margin: 0px;
+}
+footer .pqr .card-text {
+    font-family: 'Galano Grotesque Bold';
+    margin: 0px;
+    line-height: 0.8em;
+    letter-spacing: 1px;
+}
+footer .pqr .card-text.arriba {
+    font-size: 100%;
+}
+footer .pqr .card-text.medio {
+    font-size: 275%;
+}
+footer .pqr .card-text.abajo {
+    font-size: 100%;
+}
+
+
+
+
+/*var(--azul)  ---  Azul - Principal
+#5E54A4
+#835FAA
+#767CB0
+/* CSS HEX */
+/*--blue: #001effff;
+--risd-blue: #3b52ffff;
+--neon-blue: #586cffff;
+--neon-blue-2: #6779ffff;
+--tropical-indigo: #7585ffff;
+--vista-blue: #939fffff;
+--periwinkle: #b0b8ffff;
+--periwinkle-2: #bfc5ffff;
+--periwinkle-3: #cdd2ffff;
+--lavender-web: #eaebffff;
+
+ CSS HSL 
+--blue: hsla(233, 100%, 50%, 1);
+--risd-blue: hsla(233, 100%, 62%, 1);
+--neon-blue: hsla(233, 100%, 67%, 1);
+--neon-blue-2: hsla(233, 100%, 70%, 1);
+--tropical-indigo: hsla(233, 100%, 73%, 1);
+--vista-blue: hsla(233, 100%, 79%, 1);
+--periwinkle: hsla(234, 100%, 85%, 1);
+--periwinkle-2: hsla(234, 100%, 87%, 1);
+--periwinkle-3: hsla(234, 100%, 90%, 1);
+--lavender-web: hsla(237, 100%, 96%, 1);
+
+ SCSS HEX 
+$blue: #001effff;
+$risd-blue: #3b52ffff;
+$neon-blue: #586cffff;
+$neon-blue-2: #6779ffff;
+$tropical-indigo: #7585ffff;
+$vista-blue: #939fffff;
+$periwinkle: #b0b8ffff;
+$periwinkle-2: #bfc5ffff;
+$periwinkle-3: #cdd2ffff;
+$lavender-web: #eaebffff;
+
+ SCSS HSL 
+$blue: hsla(233, 100%, 50%, 1);
+$risd-blue: hsla(233, 100%, 62%, 1);
+$neon-blue: hsla(233, 100%, 67%, 1);
+$neon-blue-2: hsla(233, 100%, 70%, 1);
+$tropical-indigo: hsla(233, 100%, 73%, 1);
+$vista-blue: hsla(233, 100%, 79%, 1);
+$periwinkle: hsla(234, 100%, 85%, 1);
+$periwinkle-2: hsla(234, 100%, 87%, 1);
+$periwinkle-3: hsla(234, 100%, 90%, 1);
+$lavender-web: hsla(237, 100%, 96%, 1);
+
+ SCSS RGB 
+$blue: rgba(0, 30, 255, 1);
+$risd-blue: rgba(59, 82, 255, 1);
+$neon-blue: rgba(88, 108, 255, 1);
+$neon-blue-2: rgba(103, 121, 255, 1);
+$tropical-indigo: rgba(117, 133, 255, 1);
+$vista-blue: rgba(147, 159, 255, 1);
+$periwinkle: rgba(176, 184, 255, 1);
+$periwinkle-2: rgba(191, 197, 255, 1);
+$periwinkle-3: rgba(205, 210, 255, 1);
+$lavender-web: rgba(234, 235, 255, 1);
+
+ SCSS Gradient 
+$gradient-top: linear-gradient(0deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+$gradient-right: linear-gradient(90deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+$gradient-bottom: linear-gradient(180deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+$gradient-left: linear-gradient(270deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+$gradient-top-right: linear-gradient(45deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+$gradient-bottom-right: linear-gradient(135deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+$gradient-top-left: linear-gradient(225deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+$gradient-bottom-left: linear-gradient(315deg, #001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);
+$gradient-radial: radial-gradient(#001effff, #3b52ffff, #586cffff, #6779ffff, #7585ffff, #939fffff, #b0b8ffff, #bfc5ffff, #cdd2ffff, #eaebffff);*/
+/*var(--gris)  --  Gris Principal
+#CACCD2
+#A6B1B9
+#B2B2B2
+#D0A616  --  Contraste*/*/
+/*Colores de la CCSM*/
+/*/*
+Negro ________________________________
+#1c1b15
+rgb(28, 27, 21)
+#1c1b15
+rgb(28, 27, 21)
+#383434
+rgb(56, 52, 52)
+#251f1d
+Verde ________________________________
+#7cbb28
+rgb(124, 187, 40)
+#7ebb2c
+#94c844
+rgb(148, 200, 68)
+#4c7c54
+rgb(76, 124, 84)
+Azul ________________________________
+#1f4389
+#1f4289
+rgb(31, 67, 137)
+#234289
+#98a7cb
+Amarillo ________________________________
+#f2b709
+#fde378
+#f5b807
+#f1b709
+#eee9b7
+rgb(241, 183, 9)
+Rojo ________________________________
+#762c24
+#772c24
+rgb(119, 44, 36) 
+#782e22
+#943523
+rgb(148, 53, 35)
+Gris
+#898786*/

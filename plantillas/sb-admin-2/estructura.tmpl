@@ -1,0 +1,9 @@
+{% if Config.Mantenimiento %}
+{% include "mantenimiento.html.php" %}
+{% else %}    
+{% if Config.estaLogueado %}
+{% include "tablero.php" %}
+{% else %}
+{% include "login.php" %}
+{% endif %}
+{% endif %}

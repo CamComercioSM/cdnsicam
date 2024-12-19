@@ -1,0 +1,82 @@
+tr.filaSeleccionada a,
+.dataTable tr.filaSeleccionada a {
+    color: white!important;
+}
+
+tr.filaSeleccionada,
+.dataTable tr.filaSeleccionada {
+    cursor:pointer;
+    position: relative;
+
+    background: rgb(0,166,251);
+    background: -moz-radial-gradient(circle, rgba(0,166,251,1) 10%, rgba(0,166,251,1) 50%, rgba(0,73,251,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(0,166,251,1) 10%, rgba(0,166,251,1) 50%, rgba(0,73,251,1) 100%);
+    background: radial-gradient(circle, rgba(0,166,251,1) 10%, rgba(0,166,251,1) 50%, rgba(0,73,251,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00a6fb",endColorstr="#0049fb",GradientType=1);
+
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px,
+        rgba(6, 24, 44, 0.65) 0px 4px 6px -1px,
+        rgba(255, 255, 255, 0.08) 0px 1px 0px ,
+        rgba(255, 255, 255, 0.08) 0px 1px 0px ;
+}
+
+tr.filaSeleccionada td,
+.dataTable tr.filaSeleccionada td {
+    cursor:pointer;
+
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    font-weight: 600;
+    padding: 0px;
+
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.75);
+}
+
+tr.filaResaltada,
+.dataTable tr.filaResaltada {
+    position: relative;
+
+    background: rgb(173,255,0);
+    background: -moz-radial-gradient(circle, rgba(173,255,0,1) 0%, rgba(255,255,0,1) 91%, rgba(255,212,0,1) 100%);
+    background: -webkit-radial-gradient(circle, rgba(173,255,0,1) 0%, rgba(255,255,0,1) 91%, rgba(255,212,0,1) 100%);
+    background: radial-gradient(circle, rgba(173,255,0,1) 0%, rgba(255,255,0,1) 91%, rgba(255,212,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#adff00",endColorstr="#ffd400",GradientType=1);
+
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px,
+        rgba(0, 0, 0, 0.3) 0px 30px 60px -30px,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset,
+        rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+
+}
+
+tr.filaResaltada  td ,
+.dataTable tr.filaResaltada  td{
+    cursor:pointer;
+    background-color: transparent;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+
+    text-align: center;
+    vertical-align: middle;
+    color:black;
+    font-weight: 600;
+    padding: 0px;
+
+    -webkit-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.24);
+    -moz-box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.24);
+    box-shadow: 0px 0px 0px 0px rgba(0,0,0,0.24);
+}
+
+
+
+
+.inputCapturaDatosCelda {
+    float: right;
+    max-width: 64px;
+    margin: 0px;
+    padding: 0px;
+}
