@@ -3,8 +3,15 @@
     Require all granted
 </IfModule>
 
+# Habilitar el motor de reescritura
+RewriteEngine On
+
+# Redirigir automáticamente a la carpeta "cdnsicam" si no está presente en la URL
+RewriteCond %{REQUEST_URI} !^/cdnsicam/ [NC]
+RewriteCond %{REQUEST_URI} !\.(css|js|jpg|png|gif|ico|svg|woff|woff2|ttf|eot|json|xml|txt)$ [NC] # Evitar redirigir recursos estáticos
+RewriteRule ^(.*)$ /cdnsicam/$1 [L]
+
 
 # Personalizar errores
 ErrorDocument 404 /404.html
 ErrorDocument 403 /403.html
-
