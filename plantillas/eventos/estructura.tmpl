@@ -1,30 +1,15 @@
 {% if Config.mantenimiento %}
 {% include "mantenimiento.html.php" %}
 {% else %}
-
-    
-
-        {% if Config.Evento2 %}
-                {% include "evento-pruebas.html.php" %}
+    {% if Config.eventoCONTROLASISTENCIA %}
+        {% include "control-asistencia.html.php" %}
+    {% elseif Config.eventoESCARAPELA %}
+        {% include "escarapela.html.php" %}
+    {% else %}
+        {% if Config.Evento %}
+            {% include "evento.html.php" %}
         {% else %}
-
-            {% if Config.eventoCONTROLASISTENCIA %}
-                {% include "control-asistencia.html.php" %}
-            {% elseif Config.eventoESCARAPELA %}
-                {% include "escarapela.html.php" %}
-            {% elseif Config.eventoENCUESTA %}
-                {% include "encuesta.html.php" %}
-            {% elseif Config.consultaEventos %}
-                {% include "consulta-eventos.html.php" %}
-            {% else %}
-                {% if Config.Evento %}
-                    {% include "evento.html.php" %}
-                {% else %}
-                    {% include "inicio.html.php" %}
-                {% endif %}
-            {% endif %}
-
+            {% include "inicio.html.php" %}
         {% endif %}
-
-
+    {% endif %}
 {% endif %}

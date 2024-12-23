@@ -166,7 +166,7 @@
         <script type="text/javascript">
             new WOW().init();
         </script>
-        <!--<script data-ad-client="ca-pub-5163385221124664" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>-->
+        <script data-ad-client="ca-pub-5163385221124664" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
         <script Access-Control-Allow-Origin="tiendasicam32.net" src="https://cdn.sicam32.net/soporte/"></script>
         <script type="text/javascript">
             $(document).ready(function () {
