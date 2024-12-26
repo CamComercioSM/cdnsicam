@@ -2663,3 +2663,6 @@ Stack trace:
 #1 /home/tiendasicam32/public_html/libs/img/procesar-imagenes-externas.php(22): leerImagenExterna('png', 'https://archivo...')
 #2 {main}
   thrown in /home/tiendasicam32/public_html/libs/img/procesar-imagenes-externas.php on line 54
+[15-May-2024 19:11:16 UTC] PHP Warning:  scandir(assets/images/gallery/): Failed to open directory: No such file or directory in /home/tiendasicam32/public_html/libs/img/index.php on line 11
+[15-May-2024 19:11:16 UTC] PHP Warning:  scandir(): (errno 2): No such file or directory in /home/tiendasicam32/public_html/libs/img/index.php on line 11
+[15-May-2024 19:11:16 UTC] PHP Warning:  foreach() argument must be of type array|object, bool given in /home/tiendasicam32/public_html/libs/img/index.php on line 11

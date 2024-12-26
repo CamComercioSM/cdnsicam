@@ -1,4 +1,8 @@
 
+RewriteEngine on
+
+RewriteOptions inherit
+
 RewriteRule ^url/(.*)$ procesar-imagenes-externas.php?url=$1 [L,QSA]
 
 <IfModule mod_expires.c>
@@ -48,5 +52,3 @@ ExpiresByType application/x-javascript A432000
    php_flag zlib.output_compression On
 </IfModule>
 # END cPanel-generated php ini directives, do not edit
-
-
