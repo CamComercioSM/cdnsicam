@@ -55,7 +55,7 @@ function inyectarCargando() {
         let html = ' <div class = "loaderSicamCamComercioSM no-print" style = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; background-color: rgba(0,0,0,0.7); display: none;" > '
                 + '<table align = "center" style = "width: 100%; height: 100%;">'
                 + ' <td align = "center" valign = "middle" class = "animate pulse infinite pulsoCargando animate__animated  animate__pulse animate__infinite " >'
-                + ' <img src = "https://libs.tiendasicam32.net/img/ccsm/logo.png" alt = "" style = "max-width: 210px;"/>'
+                + ' <img src = "https://cdnsicam.net/img/ccsm/logo.png" alt = "" style = "max-width: 210px;"/>'
                 + ' </td>'
                 + ' </table>'
                 + ' </div> ';
