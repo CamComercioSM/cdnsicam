@@ -1,5 +1,5 @@
-cargarArchivoJs('https://libs.tiendasicam32.net/js/sonidos.js');
-cargarArchivoJs('https://libs.tiendasicam32.net/js/utilidades.js');
+cargarArchivoJs('https://cdnsicam.net/js/sonidos.js');
+cargarArchivoJs('https://cdnsicam.net/js/utilidades.js');
 function cargarArchivoJs(rutaArchivo) {
         window.addEventListener("load", function (event) {
                 var list = document.getElementsByTagName('script');
