@@ -114,19 +114,19 @@ Redwood
     font-family: 'Tw Cen MT';
     font-style: normal;
     font-weight: normal;
-    src: url('https://cdnsicam.net/fuente/TwCenMT.woff') format('woff');
+    src: url('https://cdnsicam.net/letras/TwCenMT.woff') format('woff');
 }
 @font-face {
     font-family: 'amplesoft_probold';
-    src: url('https://cdnsicam.net/fuente/ample_soft_pro_bold-webfont.woff2') format('woff2'),
-        url('https://cdnsicam.net/fuente/ample_soft_pro_bold-webfont.woff') format('woff');
+    src: url('https://cdnsicam.net/letras/ample_soft_pro_bold-webfont.woff2') format('woff2'),
+        url('https://cdnsicam.net/letras/ample_soft_pro_bold-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 @font-face {
     font-family: 'amplesoft_promedium';
-    src: url('https://cdnsicam.net/fuente/ample_soft_pro_medium-webfont.woff2') format('woff2'),
-        url('https://cdnsicam.net/fuente/ample_soft_pro_medium-webfont.woff') format('woff');
+    src: url('https://cdnsicam.net/letras/ample_soft_pro_medium-webfont.woff2') format('woff2'),
+        url('https://cdnsicam.net/letras/ample_soft_pro_medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 
@@ -134,16 +134,16 @@ Redwood
 
 @font-face {
     font-family: 'amplesoft_proregular';
-    src: url('https://cdnsicam.net/fuente/ample_soft_pro-webfont.woff2') format('woff2'),
-        url('https://cdnsicam.net/fuente/ample_soft_pro-webfont.woff') format('woff');
+    src: url('https://cdnsicam.net/letras/ample_soft_pro-webfont.woff2') format('woff2'),
+        url('https://cdnsicam.net/letras/ample_soft_pro-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
 
 @font-face {
     font-family: 'helveticaneuemedium';
-    src: url('https://cdnsicam.net/fuente/helveticaneue-medium-webfont.woff2') format('woff2'),
-        url('https://cdnsicam.net/fuente/helveticaneue-medium-webfont.woff') format('woff');
+    src: url('https://cdnsicam.net/letras/helveticaneue-medium-webfont.woff2') format('woff2'),
+        url('https://cdnsicam.net/letras/helveticaneue-medium-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
