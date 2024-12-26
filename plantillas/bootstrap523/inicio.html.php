@@ -175,20 +175,20 @@ Plantilla BASE
 
 {% block cargando %}
 <!--Cargando-->
-<div class = "loader no-print" style = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; background-color: rgba(0,0,0,0.7);" >
+<!--<div class = "loader no-print" style = "position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 99999; background-color: rgba(0,0,0,0.7);" >
     <table align = "center" style = "width: 100%; height: 100%;">
         <td align = "center" valign = "middle" class = "animated infinite flash pulse" >
             <img src = "https://si.sicam32.net/plantillas/default/images/Logo-Blanco.png" alt = "" style = "max-width: 210px;"/>
         </td>
     </table>
-</div>     
+</div>     -->
 {% endblock %}
 
 {% block js %}
 <!--//Acceso a las Librerias del SICAM-->
-<script Access-Control-Allow-Origin="tiendasicam32.net" src="https://clientes.sicam32.net/javascript/?bnlwSXpwZm5KM3V5MXR6NGlkb1FOMkZxZndVLy94YjhleVBJRDRaV3lFMD06OjJ1ZTRQS1VnR1NyQXRVazZGV3ZpRjRJQk1KTHNDT1EwL1J1cnh3VDZHSG89&modo=PRUEBAS"></script>
-<script src="js/plugins.js"></script>
-<script src="js/main.js"></script>
+<!--<script Access-Control-Allow-Origin="tiendasicam32.net" src="https://clientes.sicam32.net/javascript/?bnlwSXpwZm5KM3V5MXR6NGlkb1FOMkZxZndVLy94YjhleVBJRDRaV3lFMD06OjJ1ZTRQS1VnR1NyQXRVazZGV3ZpRjRJQk1KTHNDT1EwL1J1cnh3VDZHSG89&modo=PRUEBAS"></script>-->
+<!--<script src="https://libs.tiendasicam32.net/js/plugins.js"></script>
+<script src="https://libs.tiendasicam32.net/js/main.js"></script>-->
 <script type="text/javascript">
           $(document).ready(function () {
               $('#myTable').DataTable();

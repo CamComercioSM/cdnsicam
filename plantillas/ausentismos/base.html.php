@@ -25,14 +25,14 @@
         <script src="https://libs.tiendasicam32.net/plugins/sweetalert2/11.1.2/dist/sweetalert2.min.js" ></script>     
         <script src="https://libs.tiendasicam32.net/js/core.js"></script>
         <script src="https://libs.tiendasicam32.net/js/scripts.js"></script>   
-<!--        <script src="https://libs.tiendasicam32.net/js/sonidos.js"></script>          
+        <script src="https://libs.tiendasicam32.net/js/sonidos.js"></script>          
         <script src="https://libs.tiendasicam32.net/js/fechas.js"></script>       
         <script src="https://libs.tiendasicam32.net/js/utilidades.js"></script>  
         <script src="https://libs.tiendasicam32.net/js/plugins.js"></script>
-        <script src="https://libs.tiendasicam32.net/js/funciones.js"></script>-->
-        <script src="plantilla/js/bd-wizard.js"></script>
+        <script src="https://libs.tiendasicam32.net/js/funciones.js"></script>
+        <!--<script src="plantilla/js/bd-wizard.js"></script>-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-datetimepicker/2.5.20/jquery.datetimepicker.full.min.js" integrity="sha512-AIOTidJAcHBH2G/oZv9viEGXRqDNmfdPVPYOYKGy3fti0xIplnlgMHUGfuNRzC6FkzIo0iIxgFnr9RikFxK+sw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script src="plantilla/js/main.js"></script>
+        <!--<script src="plantilla/js/main.js"></script>-->
         <!--Script Personalizados-->
         {% block js %}{% endblock %}
     </body> 
