@@ -1,0 +1,118 @@
+
+
+/* ==========================================================================
+   Author's custom styles
+   ========================================================================== */
+
+@font-face {
+    font-family: 'Tw Cen MT';
+    font-style: normal;
+    font-weight: normal;
+    src: local('../fonts/TwCenMT'), url('../fonts/TwCenMT.woff') format('woff');
+}
+
+body {
+    color: black;
+}
+
+body,
+h1, h2, h3, h4, h5 {
+    font-family: 'Tw Cen MT'!important;    
+}
+
+/*.demoHeaders {
+    margin-top: 2em;
+}
+#dialog-link {
+    padding: .4em 1em .4em 20px;
+    text-decoration: none;
+    position: relative;
+}
+#dialog-link span.ui-icon {
+    margin: 0 5px 0 0;
+    position: absolute;
+    left: .2em;
+    top: 50%;
+    margin-top: -8px;
+}
+#icons {
+    margin: 0;
+    padding: 0;
+}
+#icons li {
+    margin: 2px;
+    position: relative;
+    padding: 4px 0;
+    cursor: pointer;
+    float: left;
+    list-style: none;
+}
+#icons span.ui-icon {
+    float: left;
+    margin: 0 4px;
+}
+.fakewindowcontain .ui-widget-overlay {
+    position: absolute;
+}
+select {
+    width: 200px;
+}
+
+.a-cursor{
+    cursor:pointer; 
+}
+
+.form-content input {
+    color: #000000!important;
+    font-weight: bold;
+}
+.form-content .page-links a {
+    color: #fff;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.input-monto {
+    color: #155724!important;
+    font-size: 175%!important;
+    font-weight: bold!important;
+}*/
+
+@media (max-width: 600px) {
+    .img-holder  {
+        height: auto!important;
+        width: 100%!important;
+    }
+}
+@media  (min-width: 600px) and (max-width: 1024px) {
+    .img-holder  {
+        position: fixed;
+        height: 100%!important;
+        width: 35%!important;
+    }
+    .form-holder {
+        margin-left:35%;
+        width: 70%;
+        padding: 1% 2%;
+        background-color: #44C97D;
+    }
+}
+
+.footer {
+  width: 100%;
+  background-color: silver;
+  padding: 10px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
