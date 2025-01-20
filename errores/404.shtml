@@ -1,10 +1,4 @@
-<!--#set var="code" value="404" -->
-<!--#set var="reason" value="Not Found" -->
-<!--#set var="msg" value="The server can not find the requested page:" -->
-
-
 <link rel="stylesheet" href="https://cdnsicam.net/css/errores.css"/>
-
 <div class="box">
     <div class="box__ghost">
         <div class="symbol"></div>
@@ -40,9 +34,6 @@
     </div>
 
 </div>
-
-
-
 <script>
     document.addEventListener("mousemove", function(event) {
         var pageX = document.documentElement.clientWidth;
