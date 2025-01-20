@@ -1,0 +1,73 @@
+# Habilitar el motor de reescritura
+RewriteEngine On
+
+# Redirigir todas las solicitudes HTTPS (asegurar HTTPS)
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}/$1 [L,R=301]
+
+# Configurar el directorio base para rutas estáticas
+RewriteCond %{REQUEST_URI} ^/(css|js|img|svg|fonts|videos|audios|plugins|letras|plantillas|utilidades|errores)/ [NC]
+RewriteRule ^(.*)$ /cdnsicam/$1 [L]
+
+# Redirigir todas las demás solicitudes a cdnsicam
+RewriteCond %{REQUEST_URI} !^/web/ [NC]
+RewriteRule ^(.*)$ /web/$1 [L]
+
+# Configuración para cacheo de archivos estáticos
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType image/jpeg "access plus 1 year"
+    ExpiresByType image/png "access plus 1 year"
+    ExpiresByType image/gif "access plus 1 year"
+    ExpiresByType image/svg+xml "access plus 1 year"
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType application/x-javascript "access plus 1 month"
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+    ExpiresByType application/font-ttf "access plus 1 year"
+    ExpiresByType application/font-otf "access plus 1 year"
+    ExpiresByType text/html "access plus 1 hour"
+    ExpiresByType application/json "access plus 0 seconds"
+    ExpiresDefault "access plus 1 month"
+</IfModule>
+
+# Configuración para compresión de archivos
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/javascript application/json
+    AddOutputFilterByType DEFLATE application/x-font-ttf application/x-font-opentype application/vnd.ms-fontobject font/woff font/woff2
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+</IfModule>
+
+# Configuración de encabezados seguros
+<IfModule mod_headers.c>
+    Header set X-Content-Type-Options "nosniff"
+    Header set X-Frame-Options "DENY"
+    Header set X-XSS-Protection "1; mode=block"
+    Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    Header set Access-Control-Origin "*" 
+    Header set Access-Control-Allow-Origin "*" 
+</IfModule>
+
+
+# Habilitar SSI globalmente
+<IfModule mod_include.c>
+    Options +Includes
+    AddType text/html .shtml
+    AddOutputFilter INCLUDES .shtml
+</IfModule>
+
+# Manejar errores personalizados
+ErrorDocument 403 /cdnsicam/errores/403.shtml
+ErrorDocument 404 /cdnsicam/errores/404.shtml
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php83” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php83 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
