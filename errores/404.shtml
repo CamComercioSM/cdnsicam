@@ -1,6 +1,6 @@
 <!-- Incluimos las variables SSI -->
 <!--#set var="code" value="404" -->
-<!--#set var="reason" value="Not Found" -->
+<!--#set var="reason" value="NO ESTA EL ARCHIVO QUE BUSCAS" -->
 <!--#set var="msg" value="El recurso que buscas no se encuentra disponible." -->
 
 <link rel="stylesheet" href="https://cdnsicam.net/css/paginas_errores.css" />
