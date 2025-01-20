@@ -3,13 +3,6 @@
     Require all granted
 </IfModule>
 
-# Habilitar SSI globalmente
-<IfModule mod_include.c>
-    Options +Includes
-    AddType text/html .shtml
-    AddOutputFilter INCLUDES .shtml
-</IfModule>
-
 # Habilitar el motor de reescritura
 RewriteEngine On
 
