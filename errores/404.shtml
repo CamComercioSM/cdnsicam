@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://cdnsicam.net/css/errores.css"/>
+<link rel="stylesheet" href="https://cdnsicam.net/css/paginas_errores.css"/>
 <div class="box">
     <div class="box__ghost">
         <div class="symbol"></div>
@@ -34,17 +34,29 @@
     </div>
 
 </div>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script>
-    document.addEventListener("mousemove", function(event) {
-        var pageX = document.documentElement.clientWidth;
-        var pageY = document.documentElement.clientHeight;
-        var mouseX = event.pageX;
-        var mouseY = event.pageY;
 
-        var yAxis = (pageY / 2 - mouseY) / pageY * 300;
-        var xAxis = -(mouseX / pageX) * 100 - 100;
+    var pageX = $(document).width();
+    var pageY = $(document).height();
+    var mouseY = 0;
+    var mouseX = 0;
 
-        var ghostEyes = document.querySelector('.box__ghost-eyes');
-        ghostEyes.style.transform = 'translate(' + xAxis + '%,-' + yAxis + '%)';
+    $(document).mousemove(function (event) {
+        //verticalAxis
+        mouseY = event.pageY;
+        yAxis = (pageY / 2 - mouseY) / pageY * 300;
+        //horizontalAxis
+        mouseX = event.pageX / -pageX;
+        xAxis = -mouseX * 100 - 100;
+
+        $('.box__ghost-eyes').css({'transform': 'translate(' + xAxis + '%,-' + yAxis + '%)'});
+
+        //console.log('X: ' + xAxis);
+
     });
+
 </script>
