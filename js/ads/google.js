@@ -1,5 +1,9 @@
 (async function() {
-  const blockedIPs = ["192.168.1.100", "203.0.113.45"]; // IPs bloqueadas
+  const blockedIPs = [
+    "190.90.87.90", "181.235.102.61", "161.10.111.153",
+    "161.10.117.12", "161.10.99.237", "186.98.250.154",
+    "186.98.243.149", "186.116.16.63", "186.98.237.215"
+  ]; // Lista de IPs bloqueadas
 
   try {
     const response = await fetch("https://api64.ipify.org?format=json");
