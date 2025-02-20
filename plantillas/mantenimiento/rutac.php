@@ -132,11 +132,12 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                 .content {
                     display: block; /* En móviles, permite que el contenido fluya */
                     padding: 10px; /* Reduce el padding para pantallas pequeñas */
+                    overflow-y: auto;
                 }
 
                 .card-maintenance {
-                    padding: 20px; /* Reduce el padding en móviles */
-                    max-width: 90%; /* Permite que se ajuste mejor a la pantalla */
+                    padding: 10px; /* Reduce el padding en móviles */
+                    max-width: 100%; /* Permite que se ajuste mejor a la pantalla */
                 }
             }
 
