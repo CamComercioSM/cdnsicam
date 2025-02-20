@@ -10,7 +10,8 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Ruta de Crecimiento - Mantenimiento</title>
         <!-- Bootstrap CSS -->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />        
+        <script src="https://kit.fontawesome.com/01ae7d183b.js" crossorigin="anonymous"></script>
         <style>
             /* Aseguramos que html y body ocupen el 100% del alto */
             html, body {
