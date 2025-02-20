@@ -109,7 +109,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                 position:fixed;
                 width:32px;
                 height:32px;
-                bottom:20px;
+                bottom:40px;
                 left:40px;
                 background-color:#25d366;
                 color:#FFF;
@@ -139,6 +139,19 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                     padding: 10px; /* Reduce el padding en móviles */
                     max-width: 100%; /* Permite que se ajuste mejor a la pantalla */
                 }
+
+                .whatsapp {
+                    width: 20px;
+                    height: 20px;
+                    bottom: 20px;
+                    left: 20px;
+                }
+
+
+                .whatsapp-icon {
+                    margin-top:4px;
+                }
+
             }
 
         </style>
