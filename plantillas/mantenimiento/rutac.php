@@ -11,7 +11,9 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
         <title>Ruta de Crecimiento - Mantenimiento</title>
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />        
-        <script src="https://kit.fontawesome.com/01ae7d183b.js" crossorigin="anonymous"></script>
+        <script defer src="https://kit.fontawesome.com/01ae7d183b.js" crossorigin="anonymous"></script>
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
         <style>
             /* Aseguramos que html y body ocupen el 100% del alto */
             html, body {
@@ -102,7 +104,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
             .card-maintenance a:hover {
                 text-decoration: underline;
             }
-            
+
             .whatsapp {
                 position:fixed;
                 width:32px;
@@ -122,7 +124,22 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
             .whatsapp-icon {
                 margin-top:8px;
             }
-            
+
+
+
+            /* Para dispositivos móviles */
+            @media (max-width: 768px) {
+                .content {
+                    display: block; /* En móviles, permite que el contenido fluya */
+                    padding: 10px; /* Reduce el padding para pantallas pequeñas */
+                }
+
+                .card-maintenance {
+                    padding: 20px; /* Reduce el padding en móviles */
+                    max-width: 90%; /* Permite que se ajuste mejor a la pantalla */
+                }
+            }
+
         </style>
     </head>
     <body>
