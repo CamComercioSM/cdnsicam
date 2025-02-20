@@ -175,7 +175,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                     En Ruta de Crecimiento, un programa de crecimiento empresarial gestionado por la Cámara de Comercio de Santa Marta para el Magdalena, estamos actualizando nuestros servicios para brindarte una mejor experiencia.
                 </p>
                 <p>Volveremos Pronto. ¡Gracias por tu paciencia!</p>
-                <p style="font-size:150%; font-weight: bold; " >
+                <p style="font-size:120%; font-weight: bold; " >
                     Si necesitas información, contáctanos en <a href="mailto:info@rutadecrecimiento.com">info@rutadecrecimiento.com</a> o esríbenos al <a href="https://wa.me/573218150243?text=Me%20gustaría%20saber%20........." target="_blank">+573218150243</a>.
                 </p>
                 <p>
