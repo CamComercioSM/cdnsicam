@@ -174,11 +174,9 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                 <p>
                     En Ruta de Crecimiento, un programa de crecimiento empresarial gestionado por la Cámara de Comercio de Santa Marta para el Magdalena, estamos actualizando nuestros servicios para brindarte una mejor experiencia.
                 </p>
+                <p>Volveremos Pronto. ¡Gracias por tu paciencia!</p>
                 <p style="font-size:150%; font-weight: bold; " >
-                    Puedes escribirnos a nuestró WhatsApp en <a href="https://wa.me/573218150243?text=Me%20gustaría%20saber%20........." target="_blank">+57 321 8150243</a>
-                </p>
-                <p>
-                    Por favor, vuelve a intentarlo más tarde. ¡Gracias por tu paciencia!
+                    Si necesitas información, contáctanos en <a href="mailto:info@rutadecrecimiento.com">info@rutadecrecimiento.com</a> o esríbenos al <a href="https://wa.me/573218150243?text=Me%20gustaría%20saber%20........." target="_blank">+573218150243</a>.
                 </p>
                 <p>
                     Para más información, visita <a href="https://www.ccsm.org.co" target="_blank">www.ccsm.org.co</a>
