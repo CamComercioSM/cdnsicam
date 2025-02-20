@@ -145,6 +145,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                     height: 20px;
                     bottom: 20px;
                     left: 20px;
+                    font-size: 14px;
                 }
 
 
