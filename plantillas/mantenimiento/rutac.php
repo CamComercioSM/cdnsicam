@@ -105,22 +105,22 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
             
             .whatsapp {
                 position:fixed;
-                width:70px;
-                height:70px;
-                bottom:40px;
+                width:32px;
+                height:32px;
+                bottom:20px;
                 left:40px;
                 background-color:#25d366;
                 color:#FFF;
                 border-radius:50px;
                 text-align:center;
-                font-size:40px;
+                font-size:16px;
                 z-index:100;
                 transform: scale(2);
                 animation: pulse 2s infinite;
             }
 
             .whatsapp-icon {
-                margin-top:13px;
+                margin-top:8px;
             }
             
         </style>
