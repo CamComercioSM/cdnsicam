@@ -260,7 +260,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                 fetch("https://app.rutadecrecimiento.com/")
                         .then(response => {
                             if (response.ok) {
-                                document.getElementById("status-msg").innerText = "Sitio disponible, redirigiendo...";
+                                document.getElementById("status-msg").innerText = "<h1>Sitio disponible, redirigiendo...</h1>";
                                 setTimeout(() => window.location.href = "https://app.rutadecrecimiento.com/", 2000);
                             } else {
                                 document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
@@ -269,7 +269,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                         .catch(() => {
                             document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
                         });
-            }
+            } 
 
             setInterval(checkWebsiteStatus, 10000);
         </script>
