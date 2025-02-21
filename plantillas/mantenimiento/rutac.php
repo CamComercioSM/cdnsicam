@@ -256,7 +256,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
             });
 
             var tiempo_verificacion_sitio = 10; //segundos
-            var tiempo_recarga_disponible = 15;//segundos
+            var tiempo_recarga_disponible = 5;//segundos
             function checkWebsiteStatus() {
                 fetch("https://app.rutadecrecimiento.com/")
                         .then(response => {
