@@ -257,11 +257,11 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
 
 
             function checkWebsiteStatus() {
-                fetch("https://rutadecrecimiento.com/")
+                fetch("https://app.rutadecrecimiento.com/")
                         .then(response => {
                             if (response.ok) {
                                 document.getElementById("status-msg").innerText = "Sitio disponible, redirigiendo...";
-                                setTimeout(() => window.location.href = "https://rutadecrecimiento.com/", 2000);
+                                setTimeout(() => window.location.href = "https://app.rutadecrecimiento.com/", 2000);
                             } else {
                                 document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
                             }
