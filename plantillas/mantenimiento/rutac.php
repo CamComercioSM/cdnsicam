@@ -171,9 +171,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                 <img src="https://cdnsicam.net/img/rutac/rutac_blanco.png" alt="Ruta de Crecimiento - Cámara de Comercio de Santa Marta" />
                 <h1>Sitio en Mantenimiento</h1>
                 <p id="status-msg" style="color: #aaa; font-size: 14px;  ">Verificando disponibilidad...</p>       
-                <p>
-                    En Ruta de Crecimiento, un programa de crecimiento empresarial gestionado por la Cámara de Comercio de Santa Marta para el Magdalena, estamos actualizando nuestros servicios para brindarte una mejor experiencia.
-                </p>
+                <p>Desde la Ruta de Crecimiento de la Cámara de Comercio de Santa Marta para el Magdalena, estamos actualizando nuestros servicios para ofrecerte una mejor experiencia.</p>
                 <p>Volveremos Pronto. ¡Gracias por tu paciencia!</p>
                 <p style="font-size:120%; font-weight: bold; " >
                     Si necesitas información, contáctanos en <a href="mailto:info@rutadecrecimiento.com">info@rutadecrecimiento.com</a> o esríbenos al <a href="https://wa.me/573218150243?text=Me%20gustaría%20saber%20........." target="_blank">+573218150243</a>.
