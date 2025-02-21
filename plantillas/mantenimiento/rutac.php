@@ -261,7 +261,7 @@ header("Retry-After: 3600"); // Indica a los motores de búsqueda que vuelvan a 
                 fetch("https://app.rutadecrecimiento.com/")
                         .then(response => {
                             if (response.ok) {
-                                document.getElementById("status-msg").html = "<h1>Sitio disponible, redirigiendo...</h1>";
+                                document.getElementById("status-msg").innerHTML  = "<h1>Sitio disponible, redirigiendo...</h1>";
                                 setTimeout(() => window.location.href = "https://app.rutadecrecimiento.com/", tiempo_recarga_disponible * 1000);
                             } else {
                                 document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
