@@ -19,5 +19,5 @@ async function inyectar_carrusel_eventos(idDiv) {
 
 // Llamar a la función 
 setTimeout(() => {
-    inyectar_carrusel_eventos("contenido-inyectado");
+    inyectar_carrusel_eventos("slide-eventos");
 }, 123);
