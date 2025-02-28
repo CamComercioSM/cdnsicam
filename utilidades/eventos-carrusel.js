@@ -2,12 +2,8 @@ async function inyectar_carrusel_eventos(idDiv) {
     try {
         // Obtener el contenido de la página fuente
         const response = await fetch("https://eventosycapacitaciones.tiendasicam32.net/insertar");
-        console.log(response);
         if (!response.ok) throw new Error("Error al obtener el contenido");
         const html = await response.text();
-
-        console.log(html);
-
         // Extraer el contenido o mostrar un mensaje por defecto
         const extractedContent = html || "No se encontró contenido";
 
