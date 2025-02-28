@@ -5,6 +5,8 @@ document.addEventListener("DOMContentLoaded", async function () {
         if (!response.ok) throw new Error("Error al obtener el contenido");
         const html = await response.text();
 
+        console.log(html);
+
         // Extraer el contenido o mostrar un mensaje por defecto
         const extractedContent = html || "No se encontró contenido";
 
