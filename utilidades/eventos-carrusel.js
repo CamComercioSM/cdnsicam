@@ -1,4 +1,4 @@
-function inyectar_carrusel_eventos(idDiv) {
+async function inyectar_carrusel_eventos(idDiv) {
     try {
         // Obtener el contenido de la página fuente
         const response = await fetch("https://eventosycapacitaciones.tiendasicam32.net/insertar");
@@ -21,9 +21,9 @@ function inyectar_carrusel_eventos(idDiv) {
     }
 }
 
+// Llamar a la función correctamente
 inyectar_carrusel_eventos("contenido-inyectado");
 
-setTimeout(() => {  
+setTimeout(() => {
     inyectar_carrusel_eventos("contenido-inyectado");
 }, 5000);
-
