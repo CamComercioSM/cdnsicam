@@ -21,9 +21,7 @@ async function inyectar_carrusel_eventos(idDiv) {
     }
 }
 
-// Llamar a la función correctamente
-inyectar_carrusel_eventos("contenido-inyectado");
-
+// Llamar a la función 
 setTimeout(() => {
     inyectar_carrusel_eventos("contenido-inyectado");
-}, 5000);
+}, 123);
