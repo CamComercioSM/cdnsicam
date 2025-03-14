@@ -1,12 +1,9 @@
-# Permitir acceso a todos los archivos en esta carpeta
-<IfModule mod_authz_core.c>
-    Require all granted
-</IfModule>
-
-# Habilitar el motor de reescritura
+# Evitar redirecciones innecesarias en Cloudflare
 RewriteEngine On
 
-# Redirigir automáticamente a la carpeta "cdnsicam" si no está presente en la URL
+# Solo redirigir si no es un archivo estático
 RewriteCond %{REQUEST_URI} !^/cdnsicam/ [NC]
-RewriteCond %{REQUEST_URI} !\.(css|js|jpg|png|gif|ico|svg|woff|woff2|ttf|eot|json|xml|txt)$ [NC] # Evitar redirigir recursos estáticos
-RewriteRule ^(.*)$ /cdnsicam/$1 [L]
+RewriteCond %{REQUEST_URI} !^/(css|js|img|svg|fonts|videos|audios|plugins|letras|plantillas|scripts|utilidades|errores)/ [NC]
+RewriteCond %{REQUEST_URI} !\.(css|js|jpg|png|gif|ico|svg|woff|woff2|ttf|eot|json|xml|txt)$ [NC]
+RewriteRule ^(.*)$ /cdnsicam/$1 [L,R=302]
+
