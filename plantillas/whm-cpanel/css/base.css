@@ -2,7 +2,42 @@
     --main-blue: #0c1892;
     --dark-bg: #1a1a1a;
     --link-color: #00bfff;
-}
+
+    /* /---- Definición de Colores Base y Pastel ----/ */
+
+    /* --- Colores Originales --- */
+    --color-azul-oscuro: #203f84;      /* Azul oscuro */
+    --color-blanco-roto: #f3f5e8;    /* Blanco roto / Grisáceo muy claro */
+    --color-marron-rojizo: #752d22;  /* Marrón oscuro / Rojizo */
+    --color-verde: #67a12e;          /* Verde */
+    --color-amarillo: #f1b70b;       /* Amarillo / Dorado */
+  
+    /* --- Tonos Pastel Derivados --- */
+    /* Pastel = Más claro (mayor luminosidad) y menos saturado */
+  
+    --color-azul-pastel: #c4d2f3;      /* Azul claro pastel (de #203f84) */
+    --color-blanco-roto-pastel: #f9faf4; /* Blanco roto aún más suave (de #f3f5e8 - cambio sutil ya que el original es muy claro) */
+    --color-marron-pastel: #e6c9c4;    /* Marrón claro / Beige rosado pastel (de #752d22) */
+    --color-verde-pastel: #c5e5b1;      /* Verde claro pastel (de #67a12e) */
+    --color-amarillo-pastel: #fbe3b0;   /* Amarillo claro pastel (de #f1b70b) */
+  
+    /* --- Nombres Alternativos (Opcional) --- */
+    /* Puedes usar nombres más genéricos si prefieres */
+    --color-primario: var(--color-azul-oscuro);
+    --color-fondo-claro: var(--color-blanco-roto);
+    --color-acento-oscuro: var(--color-marron-rojizo);
+    --color-exito: var(--color-verde);
+    --color-advertencia: var(--color-amarillo);
+  
+    --color-primario-pastel: var(--color-azul-pastel);
+    --color-fondo-claro-pastel: var(--color-blanco-roto-pastel);
+    --color-acento-oscuro-pastel: var(--color-marron-pastel);
+    --color-exito-pastel: var(--color-verde-pastel);
+    --color-advertencia-pastel: var(--color-amarillo-pastel);
+  }
+  
+  
+
 
 /* Estilos generales para el cuerpo y el fondo */
 html, body {
@@ -121,3 +156,36 @@ html, body {
     color: #aaa;
     margin-top: 20px;
 }
+
+
+
+
+
+
+
+
+.boton-principal {
+    background-color: var(--color-primario);     /* Usa el azul oscuro */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+  }
+  
+  .boton-principal:hover {
+    background-color: var(--color-azul-pastel); /* Usa el azul pastel en hover */
+    color: var(--color-azul-oscuro);
+  }
+  
+  .mensaje-exito {
+    background-color: var(--color-exito-pastel); /* Usa el verde pastel */
+    color: var(--color-verde);                /* Texto en verde oscuro */
+    border: 1px solid var(--color-verde);
+    padding: 15px;
+    margin-bottom: 10px;
+  }
+  
+  .elemento-destacado {
+      background-color: var(--color-amarillo-pastel); /* Fondo amarillo pastel */
+      border-left: 5px solid var(--color-amarillo);   /* Borde izquierdo amarillo original */
+      padding: 10px;
+  }
