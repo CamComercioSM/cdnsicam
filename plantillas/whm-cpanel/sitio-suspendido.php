@@ -12,15 +12,16 @@
     <div class="content">
         <div class="card">
             <img src="https://cdnsicam.net/img/rutac/rutac_blanco.png" alt="Ruta de Crecimiento - Cámara de Comercio de Santa Marta">
-            <h1>Cuenta Suspendida</h1>
-            <p>El sitio web que intentas visitar ha sido suspendido temporalmente.</p>
+            <h1>Sitio Temporalmente <strong>FUERA DE SERVICIO</strong></h1>
+            <p>Estamos trabajando para mejorar tu experiencia. Por favor, vuelve más tarde.</p>
+            <p id="status-msg" style="color: #aaa; font-size: 14px;">Verificando disponibilidad...</p>      
             <p>Esto puede deberse a:</p>
             <ul style="text-align: left; margin: 20px auto; max-width: 400px; color: #ccc;">                
                 <li>Mantenimiento del sistema.</li>
             </ul>
             <p>Si eres el encargado del sitio, por favor comunícate con soporte:</p>
             <p><a href="https://centrotics.ccsm.org.co" target="_blank">centrotics.ccsm.org.co</a></p>
-            <p class="small-text">Este es un sitio gestionado por la Cámara de Comercio de Santa Marta para el Magdalena.</p>
+            <p class="small-text">Este es un sitio gestionado por la <a href="https://www.ccsm.org.co" target="_blank">Cámara de Comercio de Santa Marta para el Magdalena</a>.</p>
         </div>
     </div>   
 </body>
