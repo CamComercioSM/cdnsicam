@@ -1,43 +1,73 @@
 <?php
-// --- CONFIGURACIÓN GLOBAL --- //
+// --- INPUTS --- //
 $tipo = $_GET['tipo'] ?? 'default';
-$dominio = $_GET['domain'] ?? null;
+$dominio = strtolower(trim($_GET['domain'] ?? ''));
+$dominio_base = preg_replace('/^www\./', '', $dominio); // Quita 'www.'
 
-// --- CONFIGURACIÓN POR TIPO DE PLANTILLA --- //
+// --- CONFIGURACIÓN POR TIPO DE PLANTILLA (GENÉRICO) --- //
 $plantillas = [
     'mantenimiento' => [
         'titulo' => 'Estamos en mantenimiento',
         'mensaje' => 'El sitio se encuentra temporalmente fuera de servicio por tareas de mantenimiento.',
-        'imagen' => 'rutac_mantenimiento.png',
+        'imagen' => 'img/mantenimiento.png',
         'http_code' => 503,
         'retry_after' => 3600
     ],
     'suspendido' => [
         'titulo' => 'Cuenta suspendida',
         'mensaje' => 'Este dominio ha sido suspendido temporalmente.',
-        'imagen' => 'rutac_suspension.png',
+        'imagen' => 'img/suspendido.png',
         'http_code' => 503,
         'retry_after' => 3600
     ],
     'migracion' => [
         'titulo' => 'Estamos migrando',
-        'mensaje' => 'Estamos trasladando tu cuenta a un nuevo servidor. Vuelve pronto.',
-        'imagen' => 'rutac_migracion.png',
+        'mensaje' => 'Estamos trasladando tu cuenta a un nuevo servidor.',
+        'imagen' => 'img/migracion.png',
         'http_code' => 503,
         'retry_after' => 1800
     ],
     'default' => [
         'titulo' => 'Sitio sin contenido',
         'mensaje' => 'Este dominio aún no tiene contenido disponible.',
-        'imagen' => 'rutac_default.png',
+        'imagen' => 'img/default.png',
         'http_code' => 200,
         'retry_after' => null
     ],
 ];
 
+// --- PERSONALIZACIÓN POR DOMINIO (opcional, sobrescribe lo anterior) --- //
+$porDominio = [
+    'rutac.com' => [
+        'mantenimiento' => [
+            'titulo' => 'RutaC está en mantenimiento',
+            'mensaje' => 'Estamos actualizando nuestra plataforma para brindarte un mejor servicio.',
+            'imagen' => 'https://cdnsicam.net/img/rutac/rutac_blanco.png',
+        ],
+        'suspendido' => [
+            'titulo' => 'Cuenta suspendida de RutaC',
+            'mensaje' => 'Este dominio ha sido suspendido por motivos administrativos.',
+            'imagen' => 'https://cdnsicam.net/img/rutac/rutac_blanco.png',
+        ],
+    ],
+    'cdnsicam.net' => [
+        'migracion' => [
+            'titulo' => 'CDN SICAM está migrando',
+            'mensaje' => 'Estamos optimizando la red de distribución de contenido.',
+            'imagen' => 'img/cdnsicam_migrando.png',
+        ]
+    ]
+];
+
+// --- COMBINAR CONFIGURACIÓN --- //
 $config = $plantillas[$tipo] ?? $plantillas['default'];
 
-// --- ENCABEZADOS HTTP CORRESPONDIENTES --- //
+// Si hay personalización por dominio y tipo
+if (isset($porDominio[$dominio_base][$tipo])) {
+    $config = array_merge($config, $porDominio[$dominio_base][$tipo]);
+}
+
+// --- ENCABEZADOS HTTP --- //
 http_response_code($config['http_code']);
 if ($config['http_code'] === 503 && isset($config['retry_after'])) {
     header("Retry-After: {$config['retry_after']}");
@@ -115,12 +145,3 @@ header("Content-Type: text/html; charset=UTF-8");
                     document.body.innerHTML += '<p style="text-align:center; color:lightgreen;">Sitio activo. Redirigiendo...</p>';
                     setTimeout(() => window.location.href = "https://<?= $dominio ?>", 3000);
                 })
-                .catch(() => {
-                    // Sigue inactivo
-                });
-        }
-        setInterval(checkWebsiteStatus, 10000);
-    </script>
-    <?php endif; ?>
-</body>
-</html>
