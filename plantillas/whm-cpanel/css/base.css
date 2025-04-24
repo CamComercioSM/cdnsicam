@@ -22,3 +22,57 @@ body {
         background-position: 0% 50%;
     }
 }
+
+
+
+
+.content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.card {
+    background: rgba(0, 0, 0, 0.8);
+    border-radius: 12px;
+    padding: 40px;
+    max-width: 500px;
+    text-align: center;
+    color: #fff;
+}
+
+.card img {
+    width: 100%;
+    max-width: 200px;
+    margin-bottom: 20px;
+}
+
+.card h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+.card p {
+    font-size: 1rem;
+    margin: 10px 0;
+    color: #ddd;
+}
+
+.card a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+.card a:hover {
+    text-decoration: underline;
+}
+
+.small-text {
+    font-size: 0.85rem;
+    color: #aaa;
+    margin-top: 20px;
+}
