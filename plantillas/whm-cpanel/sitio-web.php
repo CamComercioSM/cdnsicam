@@ -44,11 +44,6 @@ $porDominio = [
             'mensaje' => 'Estamos actualizando nuestra plataforma para brindarte un mejor servicio.',
             'imagen' => 'https://cdnsicam.net/img/rutac/rutac_blanco.png',
         ],
-        'suspendido' => [
-            'titulo' => 'Cuenta suspendida de RutaC',
-            'mensaje' => 'Este dominio ha sido suspendido por motivos administrativos.',
-            'imagen' => 'https://cdnsicam.net/img/rutac/rutac_blanco.png',
-        ],
     ],
     'cdnsicam.net' => [
         'migracion' => [
@@ -145,3 +140,10 @@ header("Content-Type: text/html; charset=UTF-8");
                     document.body.innerHTML += '<p style="text-align:center; color:lightgreen;">Sitio activo. Redirigiendo...</p>';
                     setTimeout(() => window.location.href = "https://<?= $dominio ?>", 3000);
                 })
+                .catch(() => {});
+        }
+        setInterval(checkWebsiteStatus, 10000);
+    </script>
+    <?php endif; ?>
+</body>
+</html>
