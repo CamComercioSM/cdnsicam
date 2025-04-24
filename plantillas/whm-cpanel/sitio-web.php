@@ -3,34 +3,34 @@
 $tipo = $_GET['tipo'] ?? 'default';
 $dominio = strtolower(trim($_GET['domain'] ?? ''));
 $dominio_base = preg_replace('/^www\./', '', $dominio); // Quita 'www.'
-
+$logo = 'https://cdnsicam.net/img/ccsm/logo-horizontal-blanco.png'; // Logo por defecto
 // --- CONFIGURACIÓN POR TIPO DE PLANTILLA (GENÉRICO) --- //
 $plantillas = [
     'mantenimiento' => [
         'titulo' => 'Estamos en mantenimiento',
         'mensaje' => 'El sitio se encuentra temporalmente fuera de servicio por tareas de mantenimiento.',
-        'imagen' => 'img/mantenimiento.png',
+        'imagen' => $logo,
         'http_code' => 503,
         'retry_after' => 3600
     ],
     'suspendido' => [
         'titulo' => 'Cuenta suspendida',
         'mensaje' => 'Este dominio ha sido suspendido temporalmente.',
-        'imagen' => 'img/suspendido.png',
+        'imagen' => $logo,
         'http_code' => 503,
         'retry_after' => 3600
     ],
     'migracion' => [
         'titulo' => 'Estamos migrando',
         'mensaje' => 'Estamos trasladando tu cuenta a un nuevo servidor.',
-        'imagen' => 'img/migracion.png',
+        'imagen' => $logo,
         'http_code' => 503,
         'retry_after' => 1800
     ],
     'default' => [
         'titulo' => 'Sitio sin contenido',
         'mensaje' => 'Este dominio aún no tiene contenido disponible.',
-        'imagen' => 'img/default.png',
+        'imagen' => $logo,
         'http_code' => 200,
         'retry_after' => null
     ],
@@ -49,7 +49,7 @@ $porDominio = [
         'migracion' => [
             'titulo' => 'CDN SICAM está migrando',
             'mensaje' => 'Estamos optimizando la red de distribución de contenido.',
-            'imagen' => 'img/cdnsicam_migrando.png',
+            'imagen' => $logo,
         ]
     ]
 ];
