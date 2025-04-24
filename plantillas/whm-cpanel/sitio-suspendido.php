@@ -5,10 +5,7 @@
     <title>Cuenta Suspendida - Ruta de Crecimiento</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
-    <link  rel="stylesheet" href="https://cdnsicam.net/plantillas/whm-cpanel/css/base.css"   />    
-    <style>
-       
-    </style>
+    <link  rel="stylesheet" href="https://cdnsicam.net/plantillas/whm-cpanel/css/base.css"   />   
 </head>
 <body>
     <?php include_once("fondo-particulas.php"); ?>
@@ -22,7 +19,7 @@
                 <li>Mantenimiento del sistema.</li>
             </ul>
             <p>Si eres el encargado del sitio, por favor comunícate con soporte:</p>
-            <p><a href="https://centrotics.ccsm.org.co" target="_blank">centrosoporte.ccsm.org.co</a></p>
+            <p><a href="https://centrotics.ccsm.org.co" target="_blank">centrotics.ccsm.org.co</a></p>
             <p class="small-text">Este es un sitio gestionado por la Cámara de Comercio de Santa Marta para el Magdalena.</p>
         </div>
     </div>   
