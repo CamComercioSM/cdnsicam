@@ -55,7 +55,7 @@ html, body {
     width: 100%;
     height: 100%;
     z-index: 1;
-    background: linear-gradient(-45deg, var(--main-blue), var(--dark-bg), var(--main-blue), var(--dark-bg));
+    background: linear-gradient(-45deg, var(--color-primario-pastel), var(--color-fondo-claro-pastel), var(--color-primario-pastel), var(--color-acento-oscuro-pastel));
     background-size: 400% 400%;
     animation: gradientBG 10s ease infinite;
 }
