@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
     <link  rel="stylesheet" href="https://cdnsicam.net/plantillas/whm-cpanel/css/base.css"   />   
 </head>
-<body>
+<body class="background-animation">
     <?php include_once("fondo-particulas.php"); ?>
     <div class="content">
         <div class="card">
