@@ -1,34 +1,32 @@
-html,
-body {
+html, body {
     height: 100%;
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(-45deg, #0c1892, #1a1a1a, #0c1892, #1a1a1a);
-    background-size: 400% 400%;
-    animation: gradientBG 10s ease infinite;
+    font-family: sans-serif;
     overflow: hidden;
 }
 
+/* Animación de fondo */
+.background-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background: linear-gradient(-45deg, #0c1892, #1a1a1a, #0c1892, #1a1a1a);
+    background-size: 400% 400%;
+    animation: gradientBG 10s ease infinite;
+}
 @keyframes gradientBG {
-    0% {
-        background-position: 0% 50%;
-    }
-
-    50% {
-        background-position: 100% 50%;
-    }
-
-    100% {
-        background-position: 0% 50%;
-    }
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
 }
 
-
-
-
+/* Contenedor del contenido que se muestra sobre el fondo animado */
 .content {
     position: relative;
-    z-index: 2;
+    z-index: 3;
     height: 100%;
     display: flex;
     align-items: center;
@@ -36,6 +34,7 @@ body {
     padding: 20px;
 }
 
+/* Tarjeta general con fondo semitransparente */
 .card {
     background: rgba(0, 0, 0, 0.8);
     border-radius: 12px;
@@ -70,6 +69,45 @@ body {
 .card a:hover {
     text-decoration: underline;
 }
+
+/* Tarjeta de mantenimiento con fondo semitransparente */
+.card-maintenance {
+    background: rgba(0, 0, 0, 0.75);
+    border: none;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+}
+
+.card-maintenance img {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.card-maintenance h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #ffffff;
+}
+
+.card-maintenance p {
+    font-size: 1.2rem;
+    color: #ddd;
+}
+
+.card-maintenance a {
+    color: #00bfff;
+    text-decoration: none;
+}
+
+.card-maintenance a:hover {
+    text-decoration: underline;
+}
+
+
+
 
 .small-text {
     font-size: 0.85rem;
