@@ -1,7 +1,8 @@
 function checkWebsiteStatus(url_cuenta, tiempo_recarga_disponible) {
+    console.log("sitio: ", url_cuenta);
+    document.getElementById("status-msg").innerText = "Comprobando estado del sitio...";
     fetch(url_cuenta)
         .then(response => {
-
             console.log("Estado del sitio: ", response);
 
             if (response.status === 200) {
