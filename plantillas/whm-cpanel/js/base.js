@@ -4,7 +4,6 @@ function checkWebsiteStatus(url_cuenta, tiempo_recarga_disponible) {
     fetch(url_cuenta)
         .then(response => {
             console.log("Estado del sitio: ", response);
-
             if (response.status === 200) {
                 document.getElementById("status-msg").innerHTML = "<h1>Sitio " + url_cuenta + " disponible, redirigiendo...</h1>";
                 setTimeout(() => window.location.href = url_cuenta, tiempo_recarga_disponible * 1000);
