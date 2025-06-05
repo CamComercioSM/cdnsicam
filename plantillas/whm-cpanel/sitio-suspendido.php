@@ -1,9 +1,16 @@
+<?php
+$correoAdmin = isset($_GET['admin']) ? $_GET['admin'] : '';
+$dominio = '';
+if (filter_var($correoAdmin, FILTER_VALIDATE_EMAIL)) {
+    $dominio = explode('@', $correoAdmin)[1];
+}
+?>
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
-    <title>Cuenta Suspendida - [% data.user FILTER html %]</title>
+    <title>Cuenta Suspendida - <?= htmlspecialchars($correoAdmin) ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <meta name="theme-color" content="#b00020">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" />
@@ -49,12 +56,20 @@
             <h1>Sitio Temporalmente <strong>FUERA DE SERVICIO</strong></h1>
             <p>Estamos trabajando para mejorar tu experiencia. Por favor, vuelve más tarde.</p>
             <div id="status-msg" style="color: #aaa; font-size: 14px;">Verificando disponibilidad...</div>
+
+            <p>Esto puede deberse a:</p>
+            <ul style="text-align: left; margin: 20px auto; max-width: 400px; color: #ccc;">
+                <li>Mantenimiento del sistema.</li>
+                <li>Suspensión temporal por el proveedor.</li>
+            </ul>
+
             <hr style="border-color: #555;">
 
             <p><strong>Detalles de la cuenta:</strong></p>
             <ul style="text-align: left; color: #ccc; font-size: 0.95rem;">
-                <li><strong>Dominio:</strong> <span id="dominio-extraido">Cargando...</span></li>                
-                <li><strong>Correo registrado:</strong> <a href="[% data.url FILTER html %]">[% data.name FILTER html %]</a></li>
+                <li><strong>Dominio:</strong> <?= htmlspecialchars($dominio) ?: 'Desconocido' ?></li>
+                <li><strong>Correo registrado:</strong> <a href="mailto:<?= htmlspecialchars($correoAdmin) ?>"><?= htmlspecialchars($correoAdmin) ?></a></li>
+
             </ul>
 
             <p>Para asistencia, por favor visita:</p>
@@ -67,24 +82,19 @@
     </div>
 
     <script type="text/javascript">
-        const emailWHM = "[% data.name FILTER html %]";
+        const emailWHM = "<?= htmlspecialchars($correoAdmin) ?>";
 
         function obtenerDominioDesdeCorreo(correo) {
             const match = correo.match(/@([\w.-]+)/);
             return match ? match[1] : null;
         }
 
-        const dominio = obtenerDominioDesdeCorreo(emailWHM);
-        const url_cuenta = dominio ? "https://" + dominio : window.location.origin;
-        const tiempo_verificacion_sitio = 30;
-        const tiempo_recarga_disponible = 5;
+        const dominio = "<?= $dominio ?>";
+        const url_cuenta = "https://" + dominio;
+        const tiempo_verificacion_sitio = 10;
+        const tiempo_recarga_disponible = 35;
 
         document.addEventListener('DOMContentLoaded', function() {
-            const spanDominio = document.getElementById("dominio-extraido");
-            if (spanDominio && dominio) {
-                spanDominio.textContent = dominio;
-            }
-
             // Obtener IP del visitante
             fetch('https://api.ipify.org?format=json')
                 .then(res => res.json())
@@ -99,7 +109,7 @@
         });
 
         function verficarEstado() {
-            checkWebsiteStatus(url_cuenta);
+            checkWebsiteStatus(url_cuenta, tiempo_recarga_disponible);
         }
 
         setInterval(verficarEstado, tiempo_verificacion_sitio * 1000);
