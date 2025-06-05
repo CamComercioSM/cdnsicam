@@ -1,8 +1,8 @@
-function checkWebsiteStatus(url_cuenta, tiempo_recarga_disponible) {
-    console.log("sitio: ", url_cuenta);
+function checkWebsiteStatus(dominio, tiempo_recarga_disponible) {
+    console.log("sitio: ", dominio);
     document.getElementById("status-msg").innerText = "Comprobando estado del sitio...";
 
-    const apiChecker = "https://cdnsicam.net/api/check.php?dominio=" + url_cuenta;
+    const apiChecker = "https://cdnsicam.net/plantillas/whm-cpanel/verificador.php?dominio=" + dominio;
 
     fetch(apiChecker)
         .then(res => res.json())
