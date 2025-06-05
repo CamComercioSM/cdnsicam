@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://cdnsicam.net/plantillas/whm-cpanel/css/base.css" />
     <link rel="stylesheet" href="https://cdnsicam.net/plantillas/whm-cpanel/css/particulas.css" />
     <script src="https://cdnsicam.net/plantillas/whm-cpanel/js/base.js"></script>
-    <script src="https://cdnsicam.net/plantillas/whm-cpanel/js/fondo-particulas.js"></script>
+    <script src="https://cdnsicam.net/plantillas/whm-cpanel/js/particulas.js"></script>
     <style>
         .card, .card-maintenance {
             width: 100%;
