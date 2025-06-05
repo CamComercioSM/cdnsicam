@@ -1,15 +1,28 @@
 function checkWebsiteStatus(url_cuenta, tiempo_recarga_disponible) {
     console.log("sitio: ", url_cuenta);
     document.getElementById("status-msg").innerText = "Comprobando estado del sitio...";
-    fetch(url_cuenta)
+
+    const apiChecker = "https://cdnsicam.net/api/check.php?dominio=" + url_cuenta;
+
+    fetch(apiChecker)
+        .then(res => res.json())
+        .then(data => {
+            console.log("Estado del sitio: ", res);
+            if (data.status === 200 && !data.title.includes("suspended")) {
+                document.getElementById("status-msg").innerHTML = "<h1>Sitio disponible, redirigiendo...</h1>";
+                setTimeout(() => window.location.href = "https://" + dominio, 5000);
+            } else {
+                document.getElementById("status-msg").innerText =
+                    `Sitio responde con estado ${data.status}. Sigue fuera de servicio.`;
+            }
+        })
+        .catch(() => {
+            document.getElementById("status-msg").innerText = "No se pudo contactar al sitio. Sigue fuera de servicio.";
+        });
+
+    fetch(apiChecker)
         .then(response => {
             console.log("Estado del sitio: ", response);
-            if (response.status === 200) {
-                document.getElementById("status-msg").innerHTML = "<h1>Sitio " + url_cuenta + " disponible, redirigiendo...</h1>";
-                setTimeout(() => window.location.href = url_cuenta, tiempo_recarga_disponible * 1000);
-            } else {
-                document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
-            }
         })
         .catch(() => {
             document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
