@@ -91,8 +91,8 @@ if (filter_var($correoAdmin, FILTER_VALIDATE_EMAIL)) {
 
         const dominio = "<?= $dominio ?>";
         const url_cuenta = "https://" + dominio;
-        const tiempo_verificacion_sitio = 10;
-        const tiempo_recarga_disponible = 35;
+        const tiempo_verificacion_sitio = 7;
+        const tiempo_recarga_disponible = 5;
 
         document.addEventListener('DOMContentLoaded', function() {
             // Obtener IP del visitante

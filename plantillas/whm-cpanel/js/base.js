@@ -24,6 +24,7 @@ function checkWebsiteStatus(dominio, tiempo_recarga_disponible) {
     fetch(apiChecker)
         .then(response => {
             console.log("Estado del sitio: ", response);
+            console.log("Estado del sitio: ", response.json());
         })
         .catch(() => {
             document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
