@@ -24,6 +24,8 @@ preg_match("/<title>(.*?)<\/title>/i", $response, $matches);
 $title = $matches[1] ?? '';
 
 echo json_encode([
+    'dominio' => $dominio,
+    'url' => $url,
     'status' => $httpcode,
     'title' => $title,
 ]);
