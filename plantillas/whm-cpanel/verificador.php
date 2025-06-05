@@ -18,7 +18,7 @@ curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 $response = curl_exec($ch);
 $httpcode = curl_getinfo($ch, CURLINFO_HTTP_CODE);
 curl_close($ch);
-
+print_r($response);
 // Extraer el <title>
 preg_match("/<title>(.*?)<\/title>/i", $response, $matches);
 $title = $matches[1] ?? '';
