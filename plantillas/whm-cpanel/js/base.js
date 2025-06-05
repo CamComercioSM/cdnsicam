@@ -1,4 +1,4 @@
-function checkWebsiteStatus(url_cuenta) {
+function checkWebsiteStatus(url_cuenta, tiempo_recarga_disponible) {
     fetch(url_cuenta)
         .then(response => {
             if (response.status === 200) {
