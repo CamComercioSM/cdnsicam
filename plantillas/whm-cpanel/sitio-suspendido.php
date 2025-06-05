@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <title>Cuenta Suspendida - [% data.user FILTER html %]</title>
@@ -11,7 +12,8 @@
     <script src="https://cdnsicam.net/plantillas/whm-cpanel/js/base.js"></script>
     <script src="https://cdnsicam.net/plantillas/whm-cpanel/js/particulas.js"></script>
     <style>
-        .card, .card-maintenance {
+        .card,
+        .card-maintenance {
             width: 100%;
             max-width: 500px;
             margin: 0 auto;
@@ -39,6 +41,7 @@
         }
     </style>
 </head>
+
 <body class="background-animation">
     <div class="content">
         <div class="card">
@@ -46,56 +49,61 @@
             <h1>Sitio Temporalmente <strong>FUERA DE SERVICIO</strong></h1>
             <p>Estamos trabajando para mejorar tu experiencia. Por favor, vuelve más tarde.</p>
             <div id="status-msg" style="color: #aaa; font-size: 14px;">Verificando disponibilidad...</div>
-
-            <p>Esto puede deberse a:</p>
-            <ul style="text-align: left; margin: 20px auto; max-width: 400px; color: #ccc;">
-                <li>Mantenimiento del sistema.</li>
-                <li>Suspensión temporal por el proveedor.</li>
-            </ul>
-
             <hr style="border-color: #555;">
 
             <p><strong>Detalles de la cuenta:</strong></p>
             <ul style="text-align: left; color: #ccc; font-size: 0.95rem;">
-                <li><strong>Dominio:</strong> [% data.domain FILTER html %]</li>
-                <li><strong>Usuario cPanel:</strong> [% data.user FILTER html %]</li>
-                <li><strong>Nombre del sitio:</strong> [% data.name FILTER html %]</li>
-                <li><strong>Dueño:</strong> [% data.owner FILTER html %]</li>
-                <li><strong>Servidor:</strong> [% data.hostname FILTER html %]</li>
-                <li><strong>IP visitante:</strong> [% data.ip FILTER html %]</li>
-                <li><strong>Correo registrado:</strong> <a href="mailto:[% data.contactemail FILTER html %]">[% data.contactemail FILTER html %]</a></li>
+                <li><strong>Dominio:</strong> <span id="dominio-extraido">Cargando...</span></li>                
+                <li><strong>Correo registrado:</strong> <a href="[% data.url FILTER html %]">[% data.name FILTER html %]</a></li>
             </ul>
 
             <p>Para asistencia, por favor visita:</p>
             <p><a href="https://centrotics.ccsm.org.co" target="_blank">centrotics.ccsm.org.co</a></p>
+            <div><strong>IP visitante:</strong> <span id="ip-visitante">Detectando...</span></div>
 
-            <p class="small-text">
-                Sitio administrado por la <a href="https://www.ccsm.org.co" target="_blank">Cámara de Comercio de Santa Marta para el Magdalena</a>.
-            </p>
+            <p class="small-text">Sitio administrado por la <a href="https://www.ccsm.org.co" target="_blank">Cámara de Comercio de Santa Marta para el Magdalena</a>.</p>
+            <div class="copyright">Copyright © [% data.currentyear %]</div>
         </div>
     </div>
 
     <script type="text/javascript">
-        var url_cuenta = "[% data.url FILTER js %]";
-        var tiempo_verificacion_sitio = 30;
-        var tiempo_recarga_disponible = 5;
+        const emailWHM = "[% data.name FILTER html %]";
 
-        function checkWebsiteStatus() {
-            fetch(url_cuenta)
-                .then(response => {
-                    if (response.ok) {
-                        document.getElementById("status-msg").innerHTML = "<h1>Sitio disponible, redirigiendo...</h1>";
-                        setTimeout(() => window.location.href = url_cuenta, tiempo_recarga_disponible * 1000);
-                    } else {
-                        document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
-                    }
-                })
-                .catch(() => {
-                    document.getElementById("status-msg").innerText = "El sitio sigue en mantenimiento. Revisando...";
-                });
+        function obtenerDominioDesdeCorreo(correo) {
+            const match = correo.match(/@([\w.-]+)/);
+            return match ? match[1] : null;
         }
 
-        setInterval(checkWebsiteStatus, tiempo_verificacion_sitio * 1000);
+        const dominio = obtenerDominioDesdeCorreo(emailWHM);
+        const url_cuenta = dominio ? "https://" + dominio : window.location.origin;
+        const tiempo_verificacion_sitio = 30;
+        const tiempo_recarga_disponible = 5;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const spanDominio = document.getElementById("dominio-extraido");
+            if (spanDominio && dominio) {
+                spanDominio.textContent = dominio;
+            }
+
+            // Obtener IP del visitante
+            fetch('https://api.ipify.org?format=json')
+                .then(res => res.json())
+                .then(data => {
+                    const spanIP = document.getElementById("ip-visitante");
+                    if (spanIP) spanIP.textContent = data.ip;
+                })
+                .catch(() => {
+                    const spanIP = document.getElementById("ip-visitante");
+                    if (spanIP) spanIP.textContent = "No disponible";
+                });
+        });
+
+        function verficarEstado() {
+            checkWebsiteStatus(url_cuenta);
+        }
+
+        setInterval(verficarEstado, tiempo_verificacion_sitio * 1000);
     </script>
 </body>
+
 </html>
