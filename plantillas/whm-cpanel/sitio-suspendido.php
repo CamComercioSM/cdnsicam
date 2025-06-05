@@ -52,7 +52,8 @@ if (filter_var($correoAdmin, FILTER_VALIDATE_EMAIL)) {
 <body class="background-animation">
     <div class="content">
         <div class="card">
-            <img src="https://cdnsicam.net/img/ccsm/Logo-horizontal-letra-blanca-420.png" alt="[% data.domain FILTER html %] - Cámara de Comercio de Santa Marta">
+            <img src="https://cdnsicam.net/img/ccsm/Logo-horizontal-letra-blanca-420.png" alt="[% data.domain FILTER html %] - Cámara de Comercio de Santa Marta" 
+                class="img-fluid mb-3" style="max-width: 180px;" />
             <h1>Sitio Temporalmente <strong>FUERA DE SERVICIO</strong></h1>
             <p>Estamos trabajando para mejorar tu experiencia. Por favor, vuelve más tarde.</p>
             <div id="status-msg" style="color: #aaa; font-size: 14px;">Verificando disponibilidad...</div>
