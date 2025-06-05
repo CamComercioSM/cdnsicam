@@ -8,6 +8,7 @@ function checkWebsiteStatus(dominio, tiempo_recarga_disponible) {
         .then(res => res.json())
         .then(data => {
             console.log("Estado del sitio: ", res);
+            console.log("Datos del sitio: ", data);
             if (data.status === 200 && !data.title.includes("suspended")) {
                 document.getElementById("status-msg").innerHTML = "<h1>Sitio disponible, redirigiendo...</h1>";
                 setTimeout(() => window.location.href = "https://" + dominio, 5000);
