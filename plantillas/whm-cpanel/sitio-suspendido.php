@@ -56,13 +56,6 @@ if (filter_var($correoAdmin, FILTER_VALIDATE_EMAIL)) {
             <h1>Sitio Temporalmente <strong>FUERA DE SERVICIO</strong></h1>
             <p>Estamos trabajando para mejorar tu experiencia. Por favor, vuelve más tarde.</p>
             <div id="status-msg" style="color: #aaa; font-size: 14px;">Verificando disponibilidad...</div>
-
-            <p>Esto puede deberse a:</p>
-            <ul style="text-align: left; margin: 20px auto; max-width: 400px; color: #ccc;">
-                <li>Mantenimiento del sistema.</li>
-                <li>Suspensión temporal por el proveedor.</li>
-            </ul>
-
             <hr style="border-color: #555;">
 
             <p><strong>Detalles de la cuenta:</strong></p>
