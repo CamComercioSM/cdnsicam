@@ -45,7 +45,7 @@
             <img src="https://cdnsicam.net/img/ccsm/Logo-horizontal-letra-blanca-420.png" alt="[% data.domain FILTER html %] - Cámara de Comercio de Santa Marta">
             <h1>Sitio Temporalmente <strong>FUERA DE SERVICIO</strong></h1>
             <p>Estamos trabajando para mejorar tu experiencia. Por favor, vuelve más tarde.</p>
-            <p id="status-msg" style="color: #aaa; font-size: 14px;">Verificando disponibilidad...</p>
+            <div id="status-msg" style="color: #aaa; font-size: 14px;">Verificando disponibilidad...</div>
 
             <p>Esto puede deberse a:</p>
             <ul style="text-align: left; margin: 20px auto; max-width: 400px; color: #ccc;">
