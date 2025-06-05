@@ -109,7 +109,7 @@ if (filter_var($correoAdmin, FILTER_VALIDATE_EMAIL)) {
         });
 
         function verficarEstado() {
-            checkWebsiteStatus(url_cuenta, tiempo_recarga_disponible);
+            checkWebsiteStatus(dominio, tiempo_recarga_disponible);
         }
 
         setInterval(verficarEstado, tiempo_verificacion_sitio * 1000);
