@@ -1,0 +1,580 @@
+openapi: 3.1.0
+info:
+  title: Consultas al Sistema de Información Integrado (SII)
+  version: 1.0.1
+  description: Consulta expedientes, detalles de matrícula y radicados en el Sistema de Información Integrado (SII) de la Cámara de Comercio de Santa Marta.
+servers:
+  - url: https://sii.apisicam.net
+paths:
+  /consultarDatos:
+    post:
+      summary: Busqueda de expedientes
+      operationId: consultarDatosSII
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConsultaRequest"
+            examples:
+              porMatricula:
+                value:
+                  criterio: MATRICULA
+                  palabras_claves: "123654"
+              porNit:
+                value:
+                  criterio: NIT
+                  palabras_claves: "900123456"
+              porRazonSocial:
+                value:
+                  criterio: RAZONSOCIAL
+                  palabras_claves: "COLOMBIAN TRADING"
+              porProponente:
+                value:
+                  criterio: PROPONENTE
+                  palabras_claves: "456789"
+      responses:
+        "200":
+          description: Resultado de la consulta
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConsultaResponse"
+      x-oaiMeta:
+        name: Consultar expedientes SII
+        description: Devuelve la lista de expedientes que cumplen con el criterio y palabras clave.
+
+  /consultarExpediente:
+    post:
+      summary: Consulta detallada por matrícula
+      operationId: consultarExpedienteSII
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - matricula
+              properties:
+                matricula:
+                  type: string
+                  description: Matrícula mercantil del expediente a consultar.
+            example:
+              matricula: "222221"
+      responses:
+        "200":
+          description: Expediente detallado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ExpedienteDetalle"
+      x-oaiMeta:
+        name: Consultar expediente SII
+        description: Devuelve los detalles completos de un expediente a partir de la matrícula mercantil.
+
+  /consultarRadicado:
+    post:
+      summary: Consulta detallada de un radicado
+      operationId: consultarRadicadoSII
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - radicado
+                - tipo_registro
+              properties:
+                radicado:
+                  type: string
+                  description: Código alfanumérico del radicado a consultar.
+                tipo_registro:
+                  type: string
+                  description: Tipo de registro REGMER (registro mercantil) o RUP (registro de proponentes) 
+            examples:
+              porRegistroMercantil:
+                value:
+                  radicado: "668464"
+                  tipo_registro: "REGMER"
+              porProponente:
+                value:
+                  radicado: "668464"
+                  tipo_registro: "RUP"
+      responses:
+        "200":
+          description: Detalle del radicado
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RadicadoDetalle"
+      x-oaiMeta:
+        name: Consultar radicado SII
+        description: Devuelve los detalles de un radicado específico a partir del código alfanumérico.
+
+  /consultarRadicados:
+    post:
+      summary: Consulta de radicados por matrícula o proponente
+      operationId: consultarRadicadosSII
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                matricula:
+                  type: string
+                  description: Matrícula mercantil sobre la cual se consultarán los radicados.
+                proponente:
+                  type: string
+                  description: Número del proponente sobre el cual se consultarán los radicados.
+                ultimos:
+                  type: integer
+                  description: Número de últimos radicados que se desean consultar.
+            examples:
+              porMatricula:
+                value:
+                  matricula: "99999999"
+                  ultimos: 5
+              porProponente:
+                value:
+                  proponente: "99999999"
+                  ultimos: 5
+      responses:
+        "200":
+          description: Lista de radicados asociados a la matrícula o proponente
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RadicadosPorMatricula"
+      x-oaiMeta:
+        name: Consultar radicados SII
+        description: Devuelve los radicados asociados a una matrícula mercantil o número de proponente, incluyendo el estado y seguimiento.
+
+components:
+  schemas:
+    ConsultaRequest:
+      type: object
+      required:
+        - criterio
+        - palabras_claves
+      properties:
+        criterio:
+          type: string
+          description: Criterio de búsqueda
+          enum:
+            - MATRICULA
+            - NIT
+            - RAZONSOCIAL
+            - PROPONENTE
+        palabras_claves:
+          type: string
+          description: Palabras clave utilizadas para la búsqueda.
+
+    ConsultaResponse:
+      type: object
+      required:
+        - criterio
+        - palabras_claves
+        - expedientes
+      properties:
+        criterio:
+          type: string
+        palabras_claves:
+          type: string
+        expedientes:
+          type: array
+          items:
+            $ref: "#/components/schemas/Expediente"
+
+    Expediente:
+      type: object
+      properties:
+        matricula:
+          type: string
+        nombre:
+          type: string
+        nit:
+          type: string
+          nullable: true
+        estadoMatriculaTitulo:
+          type: string
+        direccion:
+          type: string
+        municipio:
+          type: string
+        telefonos:
+          type: array
+          items:
+            type: string
+        certificados:
+          type: array
+          items:
+            $ref: "#/components/schemas/Certificado"
+      additionalProperties: true
+
+    Certificado:
+      type: object
+      properties:
+        tipocertificado:
+          type: string
+        descripcioncertificado:
+          type: string
+        servicio:
+          type: string
+        valor:
+          type: string
+
+    ExpedienteDetalle:
+      type: object
+      properties:
+        matricula:
+          type: string
+        resultado:
+          type: object
+          properties:
+            codigoerror:
+              type: string
+            mensajeerror:
+              type: string
+            nombre:
+              type: string
+            apellido1:
+              type: string
+            sigla:
+              type: string
+            nit:
+              type: string
+            estado:
+              type: string
+            fechamatricula:
+              type: string
+            fecharenovacion:
+              type: string
+            dircom:
+              type: string
+            telcom1:
+              type: string
+            emailcom:
+              type: string
+            ciiu1:
+              type: string
+            activos:
+              type: number
+            pasivos:
+              type: number
+            patrimonio:
+              type: number
+            ingresos:
+              type: number
+            utilidad:
+              type: number
+            personal:
+              type: number
+            pagos:
+              type: array
+              items:
+                $ref: "#/components/schemas/Pago"
+            establecimientos:
+              type: array
+              items:
+                $ref: "#/components/schemas/Establecimiento"
+
+    Pago:
+      type: object
+      properties:
+        numerorecibo:
+          type: string
+        fecoperacion:
+          type: string
+        fecharenovacionaplicable:
+          type: string
+          nullable: true
+        ctranulacion:
+          type: string
+        servicio:
+          type: string
+        nombreservicio:
+          type: string
+        valor:
+          type: string
+        anorenovacion:
+          type: string
+        reliquidacion:
+          type: string
+
+    Establecimiento:
+      type: object
+      properties:
+        categoria:
+          type: string
+        matricula:
+          type: string
+        nombre:
+          type: string
+        ultanorenovado:
+          type: string
+        fechamatricula:
+          type: string
+        fecharenovacion:
+          type: string
+        valorestablecimiento:
+          type: string
+        latitud:
+          type: number
+        longitud:
+          type: number
+        fechacenso:
+          type: string
+        censo:
+          type: string
+        infografia1:
+          type: string
+        infografia2:
+          type: string
+
+    RadicadoDetalle:
+      type: object
+      properties:
+        codigoerror:
+          type: string
+        mensajeerror:
+          type: string
+        radicado:
+          type: string
+        liquidacion:
+          type: string
+        tipotramite:
+          type: string
+        subtipotramite:
+          type: string
+        operacion:
+          type: string
+        recibo:
+          type: string
+        operaciongob:
+          type: string
+        recibogob:
+          type: string
+        fecharadicacion:
+          type: string
+        matricula:
+          type: string
+        proponente:
+          type: string
+        idclase:
+          type: string
+        identificacion:
+          type: string
+        nombre:
+          type: string
+        direccion:
+          type: string
+        municipio:
+          type: string
+        email:
+          type: string
+        telefono:
+          type: string
+        organizacion:
+          type: string
+        categoria:
+          type: string
+        tiporegistro:
+          type: string
+        bandeja:
+          type: string
+        idclasepagador:
+          type: string
+        numidpagador:
+          type: string
+        nombrepagador:
+          type: string
+        direccionpagador:
+          type: string
+        municipiopagador:
+          type: string
+        telefonopagador:
+          type: string
+        emailpagador:
+          type: string
+        estadofinal:
+          type: string
+        usuariofinal:
+          type: string
+        fechaestadofinal:
+          type: string
+        horaestadofinal:
+          type: string
+        sucursalfinal:
+          type: string
+        actoreparto:
+          type: string
+        tipodoc:
+          type: string
+        tipodocsirep:
+          type: string
+        tipodocdigitalizacion:
+          type: string
+        tipoingreso:
+          type: string
+        numerodoc:
+          type: string
+        origendoc:
+          type: string
+        fechadoc:
+          type: string
+        municipiodoc:
+          type: string
+        numerointernorue:
+          type: string
+        numerounicorue:
+          type: string
+        tipogasto:
+          type: string
+        cantidadfolios:
+          type: string
+        cantidadhojas:
+          type: string
+        firmadoelectronicamente:
+          type: string
+        firmadomanuscrita:
+          type: string
+        estados:
+          type: array
+          items:
+            $ref: "#/components/schemas/RadicadoEstado"
+        servicios:
+          type: array
+          items:
+            $ref: "#/components/schemas/RadicadoServicio"
+        imagenes:
+          type: array
+          items:
+            $ref: "#/components/schemas/RadicadoImagen"
+        numid:
+          type: string
+        procedereingreso:
+          type: string
+        cumplorequisitosbenley1780:
+          type: string
+        mantengorequisitosbenley1780:
+          type: string
+        renunciobeneficiosley1780:
+          type: string
+        multadoponal:
+          type: string
+        controlactividadaltoimpacto:
+          type: string
+        verificacionsoportes:
+          type: string
+
+    RadicadoEstado:
+      type: object
+      properties:
+        fecha:
+          type: string
+        hora:
+          type: string
+        estado:
+          type: string
+        usuariofinal:
+          type: string
+        estadoTramiteTITULO:
+          type: string
+
+    RadicadoServicio:
+      type: object
+      properties:
+        servicio:
+          type: string
+        nservicio:
+          type: string
+        proponente:
+          type: string
+        matricula:
+          type: string
+        identificacion:
+          type: string
+        nombre:
+          type: string
+        cantidad:
+          type: integer
+        valorbase:
+          type: number
+        valorservicio:
+          type: number
+        ano:
+          type: string
+
+    RadicadoImagen:
+      type: object
+      properties:
+        url:
+          type: string
+        idanexo:
+          type: string
+        tipo:
+          type: string
+        tipoanexo:
+          type: string
+        tiposirep:
+          type: string
+        tipodigitalizacion:
+          type: string
+        identificador:
+          type: string
+        formato:
+          type: string
+        identificacion:
+          type: string
+        nombre:
+          type: string
+        matricula:
+          type: string
+        proponente:
+          type: string
+        fechadocumento:
+          type: string
+        origen:
+          type: string
+        observaciones:
+          type: string
+        idusuarioescaneo:
+          type: string
+        fechaescaneo:
+          type: string
+
+    RadicadosPorMatricula:
+      type: object
+      properties:
+        matricula:
+          type: string
+        radicados:
+          type: array
+          items:
+            $ref: "#/components/schemas/RadicadoSeguimiento"
+
+    RadicadoSeguimiento:
+      type: object
+      properties:
+        radicado:
+          type: string
+        fecharegistro:
+          type: string
+        estado:
+          type: string
+        usuario:
+          type: string
+        tramite:
+          type: string
+        bandeja:
+          type: string
+        observaciones:
+          type: string
