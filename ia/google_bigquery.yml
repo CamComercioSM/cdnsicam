@@ -1,0 +1,37 @@
+openapi: 3.1.0
+info:
+  title: SICAM Google BigQuery API
+  version: 1.0.3
+  description: API para consultar expedientes y registros mercantiles.
+servers:
+  - url: https://google.apisicam.net
+paths:
+  /totalFilasBDGratuita:
+    post:
+      summary: Obtener el total de filas gratuitas disponibles
+      operationId: totalFilasBDGratuita
+      x-openai-isConsequential: false
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TotalFilasBDGratuitaResponse"
+components:
+  schemas:
+    TotalFilasBDGratuitaResponse:
+      type: object
+      properties:
+        RESPUESTA:
+          type: string
+        MENSAJE:
+          type: string
+        DATOS:
+          type: integer
+        CODIGO:
+          type: string
+          nullable: true
+        ERROR:
+          type: string
+          nullable: true
