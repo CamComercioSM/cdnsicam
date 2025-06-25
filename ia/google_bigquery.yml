@@ -1,25 +1,108 @@
 openapi: 3.1.0
 info:
-  title: SICAM Google BigQuery API
-  version: 1.0.3
-  description: API para consultar expedientes y registros mercantiles.
+  title: SICAM Google BigQuery
+  version: 1.0.0
+  description: Uso de los servicios de Google BigQuery
 servers:
   - url: https://google.apisicam.net
+    description: Servidor de producción
 paths:
-  /totalFilasBDGratuita:
+  /buscarRegistradosPorCIIU1:
     post:
-      summary: Obtener el total de filas gratuitas disponibles
-      operationId: totalFilasBDGratuita
+      summary: Buscar comerciantes por CIIU
+      operationId: buscarRegistradosPorCIIU1
       x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/BuscarRegistradosPorCIIU1Request"
       responses:
         "200":
-          description: OK
+          description: Lista de comerciantes
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/BuscarRegistradosPorCIIU1Response"
+  /totalFilasBDGratuita:
+    post:
+      summary: Obtener el total de filas gratuitas
+      operationId: totalFilasBDGratuita
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/TotalFilasBDGratuitaRequest"
+      responses:
+        "200":
+          description: Conteo total
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/TotalFilasBDGratuitaResponse"
+  /consultarIngresosPorServicio:
+    post:
+      summary: Obtener ingresos por servicio para un mes dado
+      operationId: consultarIngresosPorServicio
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ObtenerIngresosPorServicioRequest"
+      responses:
+        "200":
+          description: Lista de ingresos agrupados por servicio
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ObtenerIngresosPorServicioResponse"
 components:
   schemas:
+    BuscarRegistradosPorCIIU1Request:
+      type: object
+      description: Debe enviar al menos uno de los campos ciiu1, codigo o titulo.
+      properties:
+        ciiu1:
+          type: string
+          description: "Código completo. Ej.: G4772"
+        codigo:
+          type: string
+          description: "Sólo 4 dígitos. Ej.: 4772"
+        titulo:
+          type: string
+          description: Palabras clave
+        limite:
+          type: integer
+          description: Máx. registros (0 = sin límite)
+          default: 0
+    BuscarRegistradosPorCIIU1Response:
+      type: object
+      properties:
+        RESPUESTA:
+          type: string
+        MENSAJE:
+          type: string
+        DATOS:
+          type: array
+          items:
+            $ref: "#/components/schemas/RegistroMercantil"
+        CODIGO:
+          type: string
+          nullable: true
+        ERROR:
+          type: string
+          nullable: true
+    TotalFilasBDGratuitaRequest:
+      type: object
+      properties:
+        filtro:
+          type: string
+          description: "Condición de filtrado en formato SQL WHERE (opcional). Ej.: `municipioTITULO = 'Santa Marta'`"
     TotalFilasBDGratuitaResponse:
       type: object
       properties:
@@ -35,3 +118,99 @@ components:
         ERROR:
           type: string
           nullable: true
+    RegistroMercantil:
+      type: object
+      properties:
+        registradoMATRICULA:
+          type: string
+          description: Número de matrícula
+        registradoNIT:
+          type: string
+          description: NIT o documento
+        registradoRAZONSOCIAL:
+          type: string
+          description: Razón social
+        registradoCIIU1:
+          type: string
+          description: Código CIIU principal
+        registroEstadoTITULO:
+          type: string
+          description: Estado de la matrícula
+        registroPublicoCODIGO:
+          type: string
+          description: Tipo de registro
+        registradoFCHMATRICULA:
+          type: string
+          format: date
+          description: Fecha de matrícula
+        registradoFCHRENOVACION:
+          type: string
+          format: date
+          description: Fecha de última renovación
+        registradoULTANORENOVADO:
+          type: string
+          description: Año de la última renovación
+        registradoFCHCANCELACION:
+          type: string
+          format: date
+          nullable: true
+          description: Fecha de cancelación
+        ciiuActividadPRINCIPALCODIGO:
+          type: string
+          description: Actividad principal (4 dígitos)
+        ciiuActividadPRINCIPALTITULO:
+          type: string
+          description: Descripción de la actividad principal
+        ciiuSeccionPRINCIPALTITULO:
+          type: string
+          description: Sección CIIU principal
+        macroSectorPRINCIPALTITULO:
+          type: string
+          description: Macro-sector
+        municipioTITULO:
+          type: string
+          description: Municipio
+        tipoOrganizacionTITULO:
+          type: string
+          description: Tipo de organización
+    ObtenerIngresosPorServicioRequest:
+      type: object
+      properties:
+        mes:
+          type: string
+          pattern: ^\d{4}-\d{2}$
+          description: Mes a consultar en formato AAAA-MM. Por defecto, se usará el mes actual si se omite.
+        servicio:
+          type: string
+          description: Nombre del servicio (puede ser parcial). Al menos uno entre este o claseServicio debe ser incluido.
+        clase:
+          type: string
+          description: Clase del servicio (puede ser parcial). Al menos uno entre este o nombreServicio debe ser incluido.
+      required:
+        - mes
+    ObtenerIngresosPorServicioResponse:
+      type: array
+      items:
+        $ref: "#/components/schemas/IngresoPorServicioItem"
+    IngresoPorServicioItem:
+      type: object
+      properties:
+        portafolioClaseTITULO:
+          type: string
+          description: Título o categoría principal del portafolio (ej. CERTIFICADOS)
+        tramiteSiiDESCRIPCIONPRODUCTO:
+          type: string
+          description: Descripción del producto o trámite registrado en el SII (ej. CERTIFICADO DE MATRICULA MERCANTIL)
+        clase_servicio:
+          type: string
+          description: Clase del servicio (ej. CERTIFICADOS, OPERACIONES ESPECIALES RUE)
+        mes:
+          type: string
+          pattern: ^\d{4}-\d{2}$
+          description: Mes correspondiente al registro (formato AAAA-MM)
+        total_valor:
+          type: number
+          format: double
+          description: Valor total recaudado por el servicio en el mes indicado. Puede venir en notación científica.
+
+    
