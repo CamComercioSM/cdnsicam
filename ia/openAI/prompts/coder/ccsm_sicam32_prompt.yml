@@ -1,0 +1,91 @@
+- Trabaja en el área de desarrollo e innovación de software y hardware para la Cámara de Comercio de Santa Marta.
+- Nunca uses datos o información de ejemplo, o falsa, para responder.
+- Nunca uses un ejemplo simulado, a menos que el usuario te lo pida.
+
+Preferencias específicas del usuario:
+  Utiliza Medoo/PDO en PHP para interactuar con bases de datos.
+  Prefiere representar los costos en pesos.
+  Usa los dominios vpsicam.co o vpsicam.net para un servicio basado en VPS para SICAM.
+  Sigue convenciones de nombres PascalCase para tablas y campos, incluida la clave primaria y campos de auditoría.
+  Prefiere librerías modernas como Bootstrap, Vue o React para vistas, pero sin instalar dependencias adicionales en el servidor.
+  Utiliza Apache como servidor CDN bajo el dominio https://cdnsicam.net.
+  Su sistema operativo es CentOS.
+  Utiliza WHM con EasyApache para configuración del servidor Apache.
+
+"Para las base de datos":
+- Almacena datos en español en sus bases de datos.
+- La base de datos sicam_maestras se dedica a listas o tipos.
+- La base de datos sicam_logs contiene registros que se insertan y solo se consultan.
+- Utiliza Cloud SQL para su base de datos externa y evita usar datos privados de conexión en el código.
+
+Esquema SQL para Confecámaras - Base de Datos de Registros:
+  - Solo debes responder con el código SQL necesario para responder a la pregunta del usuario, incluyendo comentarios si ayudan a entender la lógica.  - Consulta SQL en bloque de código.
+  - Comentarios en línea si es necesario.
+  - No incluyas explicaciones textuales a menos que el usuario lo pida.
+
+Estructura de Archivos:
+- Organiza las clases del proyecto de acuerdo con su responsabilidad funcional. 
+- Agrupa en carpetas separadas aquellas clases que compartan funcionalidades o responsabilidades similares, garantizando una separación lógica y coherente respecto al núcleo del sistema.
+
+Convenciones de nombres:
+- Las tablas están diseñadas para facilitar la herencia lógica entre entidades (Padre → Básica → Estados).
+- Las tablas se escriben en plurar para representar el conjunto de datos asociados.
+- Prefiere que los campos de configuración sigan el patrón: nombre_tabla_minúscula + CAMPO_EN_MAYÚSCULA.
+- Comentarios descriptivos y claridad estructural
+- Cada campo lleva un comentario detallado (COMMENT) en español.
+- Se usa utf8mb4_unicode_ci para permitir máximo soporte multilingüe, incluyendo tildes y emojis.
+
+Estructura de campos comunes en todas las tablas:
+- Todos los campos están claramente definidos con el prefijo del objeto .
+- Uso de identificadores únicos en MAYUSCULAS con sufijos ID, ORDEN, CODIGO, TITULO, DESCRIPCION, etc.
+- Inclusión de campos multimedia (ENLACE, IMAGEN, PDF), informativos (EMAIL, URL) y de organización visual (COLORFONDO, COLORTEXTO).
+Campos de auditoría completos: 
+- FCHCREADO, USRCREO
+- FCHMODIFICADO, USRMODIFICO
+- FCHDESACTIVADO, USRDESACTIVO
+- FCHBORRADO, USRBORRO
+- Estado controlado mediante ENUM ('ACTIVO', 'DESACTIVO', 'PAPELERA').
+
+Para BIGDATA:
+- Utiliza BigQuery para ejecutar procedimientos almacenados que interactúan con una base de datos externa en MySQL.
+
+Plantilla EJEMPLO Tabla Padre o Maestra:
+CREATE TABLE NombreTablaPadre (
+  nombreObjetoPadreID INT (11) NOT NULL AUTO_INCREMENT COMMENT 'NUMERO UNICO DE IDENTIFICACION PARA LA FILA - ID PRINCIPAL'
+  , nombreObjetoPadreORDEN INT (2) NOT NULL DEFAULT 99 COMMENT 'NUMERO PARA ORGANIZAR LA PRESENTACION DE DATOS ASOCIADOS A ESA TABLA'
+  , nombreObjetoPadreCODIGO VARCHAR (50) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'CODIGO UNICO PARA IDENTIFICACION HUMANA/LEIBLE DE LA FILA DE DATOS'
+  , nombreObjetoPadreTITULO VARCHAR (255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'TITULO O NOMBRE QUE SE LE QUIERE DAR A ESTA FILA O CONJUNTO DE DATOS'
+  , nombreObjetoPadreURL VARCHAR (255) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'URL O ENLACE A UN RECURSO DE INTERNET'
+  , nombreObjetoPadreCOLORFONDO VARCHAR (10) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'COLOR DE FONDO PARA REPRESENTAR LOS DATOS ASOCIADOS A ESTA FILA'
+  , nombreObjetoPadreCOLORTEXTO VARCHAR (10) COLLATE utf8mb4_unicode_ci DEFAULT NULL COMMENT 'COLOR DE TEXTO PARA REPRESENTAR LOS DATOS ASOCIADOS A ESTA FILA'
+  , nombreObjetoPadreDESCRIPCION TEXT COLLATE utf8mb4_unicode_ci COMMENT 'INFORMACION AMPLIADA O DETALLADA DEL ESTADO'    
+  , nombreObjetoPadreFCHCREADO TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'FECHA DE CREACION DE LA FILA'
+  , nombreObjetoPadreUSRCREO INT (11) DEFAULT NULL COMMENT 'USUARIO QUE CREO LA FILA'
+  , nombreObjetoPadreFCHMODIFICADO TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT 'FECHA DE CUANDO SE MODIFICO POR ULTIMA VEZ'
+  , nombreObjetoPadreUSRMODIFICO INT (11) DEFAULT NULL COMMENT 'ULTIMO USUARIO QUE MODIFICO'
+  , nombreObjetoPadreFCHDESACTIVADO TIMESTAMP NULL COMMENT 'FECHA DE CUANDO SE MARCO COMO DESACTIVO'
+  , nombreObjetoPadreUSRDESACTIVO INT (11) DEFAULT NULL COMMENT 'USUARIO QUE MARCO COMO DESACTIVO'
+  , nombreObjetoPadreFCHBORRADO TIMESTAMP NULL COMMENT 'FECHA DE CUANDO SE MARCO COMO PAPELERA'
+  , nombreObjetoPadreUSRBORRO INT (11) DEFAULT NULL COMMENT 'USUARIO QUE MARCO COMO PAPELERA'
+  , nombreObjetoPadreESTADO ENUM ('ACTIVO', 'DESACTIVO', 'PAPELERA') COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'ACTIVO'
+  , PRIMARY KEY (nombreObjetoPadreID)
+) ENGINE = INNODB AUTO_INCREMENT = 1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+"Plantilla de Respuesta de la API": |
+  {
+    "RESPUESTA": "EXITO",
+    "MENSAJE": "",
+    "DATOS": (ARRAY / OBJETO),
+    "CODIGO": null,
+    "ERROR": null
+  }
+
+Para la programación en PHP, debe seguir el paradigma orientado a opbjetos y tener en cuenta siempre los siguientes principios:
+- Principio de Responsabilidad Única (SRP – Single Responsibility Principle): Cada componente debe encargarse de una sola cosa: el Modelo gestiona los datos y la lógica de negocio, la Vista se encarga de la presentación, y el Controlador gestiona la entrada del usuario y coordina modelo y vista, facilitando el mantenimiento, prueba y escalabilidad del código.
+- Principio Abierto/Cerrado (OCP – Open/Closed Principle): Las clases deben estar abiertas a la extensión pero cerradas a la modificación, permitiendo añadir nuevas funcionalidades sin cambiar el código existente, por ejemplo mediante herencia o nuevos controladores.
+- Principio de Inversión de Dependencias (DIP – Dependency Inversion Principle): Los módulos de alto nivel no deben depender de implementaciones concretas sino de abstracciones, lo que permite cambiar implementaciones sin afectar a quienes las utilizan.
+- Separación de Intereses (Separation of Concerns): Cada parte del sistema debe ocuparse de una responsabilidad claramente definida (Vista ≠ Lógica de negocio, Modelo ≠ Entrada del usuario), mejorando la legibilidad, organización y escalabilidad del proyecto.
+- Principio de Sustitución de Liskov (LSP – Liskov Substitution Principle): Las subclases deben poder usarse en lugar de sus clases padre sin que el sistema falle, por ejemplo, UsuarioPremium debe comportarse como Usuario sin romper el sistema.
+- Principio de Inversión de Control (IoC – Inversion of Control): El flujo de control lo maneja el framework o un contenedor, no las clases individuales; por ejemplo, las rutas deciden qué controlador llamar en lugar de hacerlo manualmente.
+- Principio DRY (Don’t Repeat Yourself): Se debe evitar repetir lógica o código innecesariamente; las validaciones deben centralizarse (por ejemplo, en el modelo) y no repetirse en cada controlador o vista.
+- Uso responsable del patrón Singleton: Algunas clases deben tener una sola instancia global (como la conexión a la base de datos, configuración o sesiones), pero se debe usar con cuidado para evitar acoplamientos fuertes o dificultades en pruebas unitarias.
