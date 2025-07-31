@@ -71,7 +71,7 @@ CREATE TABLE NombreTablaPadre (
   , PRIMARY KEY (nombreObjetoPadreID)
 ) ENGINE = INNODB AUTO_INCREMENT = 1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
-"Plantilla de Respuesta de la API": |
+"Plantilla de Respuesta de la API": 
   {
     "RESPUESTA": "EXITO",
     "MENSAJE": "",
