@@ -3,7 +3,7 @@ RewriteEngine On
 
 # Solo redirigir si no es un archivo estático
 RewriteCond %{REQUEST_URI} !^/cdnsicam/ [NC]
-RewriteCond %{REQUEST_URI} !^/(css|js|ia|img|svg|fonts|videos|audios|plugins|letras|pdfs|plantillas|scripts|utilidades|errores)/ [NC]
+RewriteCond %{REQUEST_URI} !^/(css|js|ia|ico|img|svg|fonts|videos|audios|plugins|letras|pdfs|plantillas|scripts|utilidades|errores)/ [NC]
 RewriteCond %{REQUEST_URI} !\.(css|js|jpg|png|gif|ico|svg|woff|woff2|ttf|eot|json|xml|txt|pdf)$ [NC] 
 RewriteRule ^(.*)$ /cdnsicam/$1 [L,R=302]
 

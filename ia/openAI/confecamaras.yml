@@ -1,0 +1,468 @@
+openapi: 3.1.0
+info:
+  title: SII Confecámaras - API (Base)
+  version: 1.0.0
+  description: >
+    Especificación base para acciones de GPT orientadas a consultas de CIIU y devoluciones. Mantener simple y evolutiva;
+    se irán agregando operaciones paso a paso. # PREGUNTA: confirmar límites de rate limit y tiempo de espera (timeouts)
+    para documentarlos.
+servers:
+  - url: https://confecamaras.apisicam.net
+    description: Producción
+components:
+  schemas:
+    Error:
+      type: object
+      additionalProperties: false
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Código de error legible por humanos (ej. "VALIDATION_ERROR", "NOT_FOUND").
+        message:
+          type: string
+          description: Descripción breve del error.
+        details:
+          type: object
+          additionalProperties: true
+          description: Datos adicionales (opcional).
+    ConsultarCiiusRequest:
+      type: object
+      additionalProperties: false
+      description: >
+        Buscar códigos CIIU por palabra clave o consultar un código exacto. Se debe enviar **solo uno** de los campos:
+        `palabras` o `codigo`.
+      properties:
+        palabras:
+          type: string
+          minLength: 1
+          description: Palabra clave para buscar en la descripción de CIIUs.
+        codigo:
+          type: string
+          minLength: 1
+          description: Código CIIU específico a consultar.
+      oneOf:
+        - required:
+            - palabras
+        - required:
+            - codigo
+    CiiuItem:
+      type: object
+      additionalProperties: false
+      properties:
+        ciiu:
+          type: string
+          description: Código CIIU
+        descripcion:
+          type: string
+        detalle:
+          type: string
+        incluye:
+          type: string
+        excluye:
+          type: string
+        restriccionponal:
+          type: string
+          nullable: true
+        actividadcomercial:
+          type: string
+          nullable: true
+    ConsultarCiiusResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        busquedaPALABRAS:
+          type: string
+          nullable: true
+        busquedaCODIGO:
+          type: string
+          nullable: true
+        renglones:
+          type: array
+          items:
+            $ref: "#/components/schemas/CiiuItem"
+        codigoerror:
+          type: string
+          description: Código de error del backend; '0' o vacío si no hubo error.
+        mensajeerror:
+          type: string
+          description: Mensaje de error (si aplica).
+    ConsultarDevolucionRequest:
+      type: object
+      additionalProperties: false
+      required:
+        - devolucion
+        - tiporegistro
+      properties:
+        devolucion:
+          type: string
+          description: Número de la devolución a consultar (máx. 10).
+          maxLength: 10
+        tiporegistro:
+          type: string
+          description: "Tipo de registro: 1=Mercantil, 2=ESADL, 3=Proponentes."
+          enum:
+            - "1"
+            - "2"
+            - "3"
+    ImagenDevolucion:
+      type: object
+      additionalProperties: false
+      properties:
+        url:
+          type: string
+          format: uri
+          description: URL del anexo/imagen
+        idanexo:
+          type: string
+        tipo:
+          type: string
+        tipoanexo:
+          type: string
+          nullable: true
+        tiposirep:
+          type: string
+          nullable: true
+        tipodigitalizacion:
+          type: string
+          nullable: true
+        identificador:
+          type: string
+          nullable: true
+        formato:
+          type: string
+        identificacion:
+          type: string
+        nombre:
+          type: string
+        matricula:
+          type: string
+        proponente:
+          type: string
+        fechadocumento:
+          type: string
+          description: Fecha del documento en formato AAAAMMDD.
+          pattern: ^[0-9]{8}$
+        origen:
+          type: string
+        observaciones:
+          type: string
+          nullable: true
+    ConsultarDevolucionResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        codigoerror:
+          type: string
+          description: Código de error del backend; '0' o vacío si no hubo error.
+        mensajeerror:
+          type: string
+          description: Mensaje de error (si aplica).
+        devolucion:
+          type: string
+          description: Número de la devolución
+        fecha:
+          type: string
+          description: Fecha del recibo en formato AAAAMMDD.
+          pattern: ^[0-9]{8}$
+        hora:
+          type: string
+          description: Hora de expedición del recibo en formato HHMMSS.
+          pattern: ^[0-9]{6}$
+        radicado:
+          type: string
+          description: Código de barras o radicado
+        usuario:
+          type: string
+          description: Usuario que genera el recibo
+        matricula:
+          type: string
+        proponente:
+          type: string
+        identificacion:
+          type: string
+        nombre:
+          type: string
+        email:
+          type: string
+          format: email
+        tipotramite:
+          type: string
+        tipodoc:
+          type: string
+        observaciones:
+          type: string
+          description: Observaciones de la devolución (puede venir en base64).
+        fechanotificacion:
+          type: string
+          description: Fecha de notificación AAAAMMDD.
+          pattern: ^[0-9]{8}$
+        horanotificacion:
+          type: string
+          description: Hora de notificación HHMMSS.
+          pattern: ^[0-9]{6}$
+        tipodevolucion:
+          type: string
+        devolucionparcial:
+          type: string
+        estado:
+          type: string
+        imagenes:
+          type: array
+          items:
+            $ref: "#/components/schemas/ImagenDevolucion"
+        __http_code:
+          type: integer
+          readOnly: true
+          description: Código HTTP observado por el cliente (campo de conveniencia).
+
+    ConsultarEstablecimientosNacionalesRequest:
+      type: object
+      additionalProperties: false
+      required: [tipoIdentificacion, identificacion]
+      properties:
+        tipoIdentificacion:
+          type: string
+          description: Tipo de identificación en RUES (ej. 1=CC, 2=NIT).
+        identificacion:
+          type: string
+          description: Número de identificación del propietario.
+          # PREGUNTA: ¿incluir dígito de verificación para NIT?
+
+    HistoricoRenovacionItem:
+      type: object
+      additionalProperties: false
+      properties:
+        ano_renovado:
+          type: string
+          description: Año renovado (AAAA).
+          pattern: "^[0-9]{4}$"
+        fecha_renovacion:
+          type: string
+          description: Fecha de renovación (AAAAMMDD).
+          pattern: "^[0-9]{8}$"
+        afiliado:
+          type: string
+          description: Indicador de afiliación (S/N o vacío).
+
+    EstablecimientoNacionalItem:
+      type: object
+      additionalProperties: false
+      properties:
+        codigocamara: { type: string, description: Código de cámara de comercio }
+        matricula: { type: string }
+        razonsocial: { type: string }
+        organizacion: { type: string }
+        categoria: { type: string }
+        estado: { type: string, description: "Estado de matrícula (ej. MA, IA)" }
+        fechamatricula:
+          type: string
+          description: Fecha de matrícula (AAAAMMDD).
+          pattern: "^[0-9]{8}$"
+        fechacancelacion:
+          type: string
+          description: Fecha de cancelación (AAAAMMDD) o vacío si no aplica.
+          pattern: "^[0-9]{8}$"
+        ultanoren:
+          type: string
+          description: Último año renovado (AAAA).
+          pattern: "^[0-9]{4}$"
+        fecharenovacion:
+          type: string
+          description: Fecha de última renovación (AAAAMMDD).
+          pattern: "^[0-9]{8}$"
+        anorenant:
+          type: string
+          description: Año de renovación anterior (AAAA).
+          pattern: "^[0-9]{4}$"
+        fecharenovacionant:
+          type: string
+          description: Fecha de renovación anterior (AAAAMMDD).
+          pattern: "^[0-9]{8}$"
+        activosvinculados: { type: string }
+        muncom: { type: string }
+        muncomnombre: { type: string }
+        dircom: { type: string }
+        barriocom: { type: string }
+        telcom1: { type: string }
+        telcom2: { type: string }
+        telcom3: { type: string }
+        emailcom: { type: string, format: email }
+        dirnot: { type: string }
+        barrionot: { type: string }
+        munnot: { type: string }
+        munnotnombre: { type: string }
+        emailnot: { type: string }
+        empleados: { type: string }
+        ciiu1: { type: string }
+        ciiu2: { type: string }
+        ciiu3: { type: string }
+        ciiu4: { type: string }
+        actividad: { type: string }
+        tipoprop: { type: string }
+        tipolocal: { type: string }
+        afiliado: { type: string }
+        historicorenovaciones:
+          type: array
+          items:
+            $ref: '#/components/schemas/HistoricoRenovacionItem'
+
+    ConsultarEstablecimientosNacionalesResponse:
+      type: object
+      additionalProperties: false
+      properties:
+        tipoIdentificacion: { type: string }
+        identificacion: { type: string }
+        cantidad: { type: integer }
+        renglones:
+          type: array
+          items:
+            $ref: '#/components/schemas/EstablecimientoNacionalItem'
+        codigoerror: { type: string }
+        mensajeerror: { type: string }
+
+paths:
+  /consultarCiius:
+    post:
+      summary: Consultar CIIUs por código o por palabra
+      operationId: consultar_ciius
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConsultarCiiusRequest"
+            examples:
+              ejemplo_palabra:
+                value:
+                  palabras: ZAPATO
+              ejemplo_codigo:
+                value:
+                  codigo: "1410"
+      responses:
+        "200":
+          description: OK - Lista de códigos CIIU encontrados
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConsultarCiiusResponse"
+              examples:
+                ok_palabra:
+                  value:
+                    busquedaPALABRAS: ZAPATO
+                    busquedaCODIGO: null
+                    renglones:
+                      - ciiu: "1410"
+                        descripcion: Fabricación de calzado
+                        detalle: Incluye fabricación de calzado...
+                        incluye: Calzado de cuero...
+                        excluye: Reparación de calzado...
+                        restriccionponal: null
+                        actividadcomercial: Comercio al por menor de calzado
+                    codigoerror: "0"
+                    mensajeerror: ""
+        "400":
+          description: Error de validación
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_request:
+                  value:
+                    code: VALIDATION_ERROR
+                    message: Debe enviar 'palabras' o 'codigo', pero no ambos.
+        "500":
+          description: Error interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                internal:
+                  value:
+                    code: INTERNAL_ERROR
+                    message: Ocurrió un error inesperado.
+  /consultarDevolucion:
+    post:
+      summary: Consultar información de una devolución
+      operationId: consultar_devolucion
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ConsultarDevolucionRequest"
+            examples:
+              ejemplo_minimo:
+                value:
+                  devolucion: "999"
+                  tiporegistro: "1"
+      responses:
+        "200":
+          description: OK - Información de la devolución
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ConsultarDevolucionResponse"
+        "400":
+          description: Error de validación
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                invalid_tiporegistro:
+                  value:
+                    code: VALIDATION_ERROR
+                    message: tiporegistro debe ser 1, 2 o 3.
+        "404":
+          description: Devolución no encontrada
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+              examples:
+                not_found:
+                  value:
+                    code: NOT_FOUND
+                    message: No existe información para la devolución indicada.
+        "500":
+          description: Error interno
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /consultarEstablecimientosNacionales:
+    post:
+      summary: Consultar establecimientos activos a nivel nacional por identificación
+      operationId: consultar_establecimientos_nacionales
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ConsultarEstablecimientosNacionalesRequest'
+      responses:
+        "200":
+          description: OK - Resultados de establecimientos
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ConsultarEstablecimientosNacionalesResponse'
+        "400":
+          description: Error de validación
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+        "500":
+          description: Error interno
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Error' }
+
+
