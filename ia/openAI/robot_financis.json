@@ -1,0 +1,212 @@
+{
+  "id": null,
+  "tenantId": "1050279",
+  "name": "Financis Bot v1",
+  "created": null,
+  "flowNodes": [
+    {
+      "interactiveButtonsHeader": {
+        "type": "Text",
+        "text": "",
+        "media": null
+      },
+      "interactiveButtonsBody": "<p>👋 ¡Hola {{name}}! Gracias por comunicarte con <em><strong>Financis</strong></em>.<br>Somos expertos en créditos por libranza y para pymes.<br>Cuéntanos cómo podemos ayudarte hoy.</p><p><strong>Seleccione con cuál departamento desea comunicarse:</strong></p>",
+      "interactiveButtonsFooter": "Responde tocando una opción abajo.",
+      "interactiveButtonsItems": [
+        {
+          "id": "TpuzyrV",
+          "buttonText": "Comercial",
+          "nodeResultId": "main_list-BXLZj"
+        },
+        {
+          "id": "WJpdOtk",
+          "buttonText": "Cartera",
+          "nodeResultId": "main_list-GLcti"
+        }
+      ],
+      "interactiveButtonsUserInputVariable": "departamento_seleccionado",
+      "interactiveButtonsDefaultNodeResultId": "",
+      "id": "main_buttons-gwnyD",
+      "flowNodeType": "InteractiveButtons",
+      "flowNodePosition": {
+        "posX": "-51",
+        "posY": "184"
+      },
+      "isStartNode": true
+    },
+    {
+      "interactiveListHeader": {
+        "type": "Text",
+        "text": ""
+      },
+      "interactiveListBody": "<p>👉 Has seleccionado Comercial.</p>",
+      "interactiveListFooter": "",
+      "interactiveListButtonText": "Elige una opción:",
+      "interactiveListSections": [
+        {
+          "id": "uNYUHOF",
+          "title": "",
+          "rows": [
+            {
+              "id": "NNFJwhL",
+              "title": "Solicitar crédito",
+              "description": "",
+              "nodeResultId": "mensaje_espera"
+            },
+            {
+              "id": "tDigThi",
+              "title": "Estado de solicitud",
+              "description": "",
+              "nodeResultId": "pedir_cedula_comercial"
+            },
+            {
+              "id": "contactarAsesor",
+              "title": "Contactar con un asesor",
+              "description": "",
+              "nodeResultId": "mensaje_espera"
+            }
+          ]
+        }
+      ],
+      "interactiveListUserInputVariable": "opcion_comercial",
+      "interactiveListDefaultNodeResultId": "",
+      "id": "main_list-BXLZj",
+      "flowNodeType": "InteractiveList",
+      "flowNodePosition": {
+        "posX": "470",
+        "posY": "508"
+      },
+      "isStartNode": false
+    },
+    {
+      "interactiveListHeader": {
+        "type": "Text",
+        "text": ""
+      },
+      "interactiveListBody": "<p>👉 Has seleccionado Cartera.</p>",
+      "interactiveListFooter": "",
+      "interactiveListButtonText": "Elige una opción:",
+      "interactiveListSections": [
+        {
+          "id": "iXnaiHq",
+          "title": "",
+          "rows": [
+            {
+              "id": "VtaGTWB",
+              "title": "Paz y salvo",
+              "description": "",
+              "nodeResultId": "pedir_cedula_cartera"
+            },
+            {
+              "id": "tcQgFem",
+              "title": "Certificado de saldo",
+              "description": "",
+              "nodeResultId": "redirigir_comercial"
+            },
+            {
+              "id": "lZLPHcD",
+              "title": "Devolución de cuota",
+              "description": "",
+              "nodeResultId": "pedir_cedula_cartera"
+            },
+            {
+              "id": "LrGWYXj",
+              "title": "Estado de cuenta",
+              "description": "",
+              "nodeResultId": "pedir_cedula_cartera"
+            },
+            {
+              "id": "abonoCredito",
+              "title": "Abono a crédito",
+              "description": "",
+              "nodeResultId": "pedir_cedula_cartera"
+            },
+            {
+              "id": "copiaLibranza",
+              "title": "Solicitud de copia de libranza",
+              "description": "",
+              "nodeResultId": "pedir_cedula_cartera"
+            },
+            {
+              "id": "certRenta",
+              "title": "Certificado para la declaración de renta",
+              "description": "",
+              "nodeResultId": "pedir_cedula_cartera"
+            },
+            {
+              "id": "contactarAsesorCar",
+              "title": "Contactar con un asesor",
+              "description": "",
+              "nodeResultId": "mensaje_espera"
+            }
+          ]
+        }
+      ],
+      "interactiveListUserInputVariable": "opcion_cartera",
+      "interactiveListDefaultNodeResultId": "",
+      "id": "main_list-GLcti",
+      "flowNodeType": "InteractiveList",
+      "flowNodePosition": {
+        "posX": "484",
+        "posY": "105"
+      },
+      "isStartNode": false
+    },
+    {
+      "id": "pedir_cedula_comercial",
+      "flowNodeType": "Text",
+      "textBody": "Por favor, escribe tu número de cédula para consultar el estado de tu solicitud.",
+      "nextNodeResultId": "mensaje_espera",
+      "flowNodePosition": {
+        "posX": "900",
+        "posY": "508"
+      },
+      "isStartNode": false
+    },
+    {
+      "id": "pedir_cedula_cartera",
+      "flowNodeType": "Text",
+      "textBody": "Por favor, escribe tu número de cédula para continuar.",
+      "nextNodeResultId": "mensaje_espera",
+      "flowNodePosition": {
+        "posX": "900",
+        "posY": "105"
+      },
+      "isStartNode": false
+    },
+    {
+      "id": "redirigir_comercial",
+      "flowNodeType": "Text",
+      "textBody": "📢 El Certificado de saldo debe ser solicitado en el área Comercial.\n¿Deseas comunicarte con Comercial?\n\n1. Sí\n2. No",
+      "nextNodeResultId": "main_buttons-gwnyD",
+      "flowNodePosition": {
+        "posX": "1200",
+        "posY": "105"
+      },
+      "isStartNode": false
+    },
+    {
+      "id": "mensaje_espera",
+      "flowNodeType": "Text",
+      "textBody": "⏳ Gracias por tu mensaje. Un asesor te atenderá en breve.",
+      "nextNodeResultId": "",
+      "flowNodePosition": {
+        "posX": "1400",
+        "posY": "100"
+      },
+      "isStartNode": false
+    }
+  ],
+  "flowEdges": [],
+  "lastUpdated": "2025-12-05T16:31:10.584Z",
+  "isDeleted": false,
+  "transform": {
+    "posX": "435.3980758747243",
+    "posY": "-11.03893307680164",
+    "zoom": "0.5832645261347128"
+  },
+  "isPro": false,
+  "channelTypes": [
+    "WA"
+  ]
+}
