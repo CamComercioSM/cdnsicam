@@ -1,0 +1,148 @@
+openapi: 3.1.0
+info:
+  title: SII Confecámaras - Consultar Radicados
+  description: Consulta los radicados asociados a una matrícula mercantil en el sistema SII de Confecámaras.
+  version: "1.0.0"
+servers:
+  - url: https://confecamaras.apisicam.net
+paths:
+  /consultarRadicados:
+    post:
+      summary: Consultar radicados de una matrícula mercantil
+      operationId: consultar_radicados
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                matricula:
+                  type: string
+                  description: Número de matrícula mercantil a consultar. Obligatorio.
+                ultimos:
+                  type: integer
+                  description: Cantidad de radicados recientes a retornar. Opcional.
+              required:
+                - matricula
+      responses:
+        "200":
+          description: Respuesta exitosa - lista de radicados
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  matricula:
+                    type: string
+                  radicados:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        radicado:
+                          type: string
+                        liquidacion:
+                          type: string
+                        tipotramite:
+                          type: string
+                        subtipotramite:
+                          type: string
+                        operacion:
+                          type: string
+                        recibo:
+                          type: string
+                        operaciongob:
+                          type: string
+                          nullable: true
+                        recibogob:
+                          type: string
+                        fecharadicacion:
+                          type: string
+                        matricula:
+                          type: string
+                        proponente:
+                          type: string
+                        idclase:
+                          type: string
+                        identificacion:
+                          type: string
+                        nombre:
+                          type: string
+                        estadofinal:
+                          type: string
+                        usuariofinal:
+                          type: string
+                        fechaestadofinal:
+                          type: string
+                        horaestadofinal:
+                          type: string
+                        sucursalfinal:
+                          type: string
+                        actoreparto:
+                          type: string
+                        tipodoc:
+                          type: string
+                        tipodocsirep:
+                          type: string
+                        tipodocdigitalizacion:
+                          type: string
+                        tipoingreso:
+                          type: string
+                        numerodoc:
+                          type: string
+                        origendoc:
+                          type: string
+                        fechadoc:
+                          type: string
+                        municipiodoc:
+                          type: string
+                        numerointernorue:
+                          type: string
+                          nullable: true
+                        numerounicorue:
+                          type: string
+                          nullable: true
+                        tipogasto:
+                          type: string
+                        cantidadfolios:
+                          type: boolean
+                          nullable: true
+                        cantidadhojas:
+                          type: boolean
+                          nullable: true
+                        firmadoelectronicamente:
+                          type: string
+                        firmadomanuscrita:
+                          type: string
+                        estados:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              fecha:
+                                type: string
+                              hora:
+                                type: string
+                              estado:
+                                type: string
+                              usuariofinal:
+                                type: string
+                        servicios:
+                          type: array
+                          items:
+                            type: object
+                        procedereingreso:
+                          type: string
+                        cumplorequisitosbenley1780:
+                          type: string
+                        mantengorequisitosbenley1780:
+                          type: string
+                        renunciobeneficiosley1780:
+                          type: string
+                        multadoponal:
+                          type: string
+                        controlactividadaltoimpacto:
+                          type: string
+                        verificacionsoportes:
+                          type: string
