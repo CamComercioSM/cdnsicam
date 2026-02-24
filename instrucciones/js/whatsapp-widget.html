@@ -1,0 +1,180 @@
+<!-- instrucciones/js/widget-whatsapp.html -->
+
+<h6 class="mb-2">Widget flotante de WhatsApp – <code>widget-whatsapp.js</code></h6>
+
+<p class="small mb-2">
+    <strong>Qué hace:</strong><br>
+    Agrega un botón flotante de WhatsApp con un mini–formulario para redactar el mensaje
+    antes de abrir la conversación en <code>https://wa.me</code>.
+</p>
+
+<p class="small mb-2">
+    <strong>Dónde está:</strong><br>
+    Archivo JS en el CDN:
+    <code>https://cdnsicam.net/js/widget-whatsapp.js</code><br>
+    Ruta relativa esperada:
+    <code>/js/widget-whatsapp.js</code>
+</p>
+
+<p class="small mb-2">
+    <strong>Cuándo se ejecuta:</strong><br>
+    Automáticamente cuando el DOM termina de cargar
+    (<code>DOMContentLoaded</code>). No requiere inicialización manual.
+</p>
+
+<hr class="my-2" />
+
+<h6 class="mb-2">1. Inclusión mínima en una página</h6>
+
+<ol class="small ps-3 mb-2">
+    <li class="mb-1">
+        Agrega en el <code>&lt;body&gt;</code> el contenedor raíz donde se inyectará el widget:
+    </li>
+</ol>
+
+<pre class="small bg-light p-2 rounded mb-2"><code>&lt;!-- Raíz donde se inyectará el widget --&gt;
+&lt;div id="widget-whatsapp-raiz"&gt;&lt;/div&gt;</code></pre>
+
+<ol start="2" class="small ps-3 mb-2">
+    <li class="mb-1">
+        (Opcional pero recomendado) Define la configuración específica de esa página <strong>antes</strong> de cargar el script:
+    </li>
+</ol>
+
+<pre class="small bg-light p-2 rounded mb-2"><code>&lt;script&gt;
+    window.CONFIGURACION_WIDGET_WHATSAPP = {
+        telefono: "573218150243",
+        posicion: "derecha-abajo",           // ver lista de posiciones más abajo
+        textoBoton: "Chatea por WhatsApp",
+        mensajePredeterminado: "Hola, vengo desde la página de contacto y quiero más información.",
+        nombreMarca: "RutaC CamComercoSM",
+        subtituloMarca: "Soporte en línea",
+        textoBienvenida: "¡Hola! Cuéntanos en qué podemos apoyarte 😊",
+        abrirAutomaticamente: false
+        // cualquier campo que omitas usa el valor por defecto del widget
+    };
+&lt;/script&gt;</code></pre>
+
+<ol start="3" class="small ps-3 mb-2">
+    <li class="mb-1">
+        Finalmente, incluye el archivo JS del widget (idealmente al final del <code>&lt;body&gt;</code>):
+    </li>
+</ol>
+
+<pre class="small bg-light p-2 rounded mb-2"><code>&lt;!-- Desde el proyecto --&gt;
+&lt;script src="/js/widget-whatsapp.js"&gt;&lt;/script&gt;
+
+&lt;!-- O desde el CDN corporativo --&gt;
+&lt;script src="https://cdnsicam.net/js/widget-whatsapp.js"&gt;&lt;/script&gt;</code></pre>
+
+<hr class="my-2" />
+
+<h6 class="mb-2">2. Configuración disponible</h6>
+
+<p class="small mb-1">
+    Todos estos campos son opcionales. Si no se definen en
+    <code>window.CONFIGURACION_WIDGET_WHATSAPP</code>, el widget usa sus valores por defecto.
+</p>
+
+<ul class="small ps-3 mb-2">
+    <li><code>telefono</code> (string)<br>
+        Número de WhatsApp con indicativo de país, solo dígitos (sin <code>+</code>).
+        <br><em>Ejemplo:</em> <code>"573218150243"</code>.
+    </li>
+    <li class="mt-1"><code>mensajePredeterminado</code> (string)<br>
+        Mensaje base que se enviará si el usuario no modifica el texto.
+    </li>
+    <li class="mt-1"><code>posicion</code> (string)<br>
+        Define en qué parte de la pantalla aparece el botón:
+        <ul class="ps-3 mb-1">
+            <li><code>"izquierda-abajo"</code> (por defecto)</li>
+            <li><code>"izquierda-centro"</code></li>
+            <li><code>"izquierda-arriba"</code></li>
+            <li><code>"derecha-abajo"</code></li>
+            <li><code>"derecha-centro"</code></li>
+            <li><code>"derecha-arriba"</code></li>
+        </ul>
+        Compatibilidad adicional (si alguna vez lo llamaste en inglés):
+        <code>"left"</code>, <code>"left-bottom"</code> → <code>"izquierda-abajo"</code><br>
+        <code>"right"</code>, <code>"right-bottom"</code> → <code>"derecha-abajo"</code>
+    </li>
+    <li class="mt-1"><code>textoBoton</code> (string)<br>
+        Texto que se muestra junto al ícono de WhatsApp en el botón flotante.
+    </li>
+    <li class="mt-1"><code>fondoBoton</code> (string)<br>
+        Color de fondo del botón (hex o cualquier valor CSS válido). Ej: <code>"#00e785"</code>.
+    </li>
+    <li class="mt-1"><code>colorTextoBoton</code> (string)<br>
+        Color del texto del botón. Ej: <code>"#ffffff"</code>.
+    </li>
+    <li class="mt-1"><code>radioBorde</code> (string)<br>
+        Radio del borde del botón. Ej: <code>"25px"</code> para pill redondeado.
+    </li>
+    <li class="mt-1"><code>margenInferior</code> (string)<br>
+        Separación inferior respecto al borde de la pantalla. Ej: <code>"20px"</code>.
+    </li>
+    <li class="mt-1"><code>margenLateral</code> (string)<br>
+        Separación lateral (izquierda o derecha según la posición). Ej: <code>"20px"</code>.
+    </li>
+    <li class="mt-1"><code>nombreMarca</code> (string)<br>
+        Título que se muestra en el encabezado del popup (ej. nombre del área o campaña).
+    </li>
+    <li class="mt-1"><code>subtituloMarca</code> (string)<br>
+        Línea secundaria bajo el título, por ejemplo <em>"Soporte en línea"</em>.
+    </li>
+    <li class="mt-1"><code>imagenMarca</code> (string)<br>
+        URL de la imagen / avatar que aparece en el encabezado.<br>
+        Por defecto apunta a:
+        <code>https://cdnsicam.net/img/rutac/rutac-whatsapp-cuadrado.png</code>
+    </li>
+    <li class="mt-1"><code>textoBienvenida</code> (string)<br>
+        Mensaje de bienvenida que aparece arriba del campo de texto.
+    </li>
+    <li class="mt-1"><code>abrirAutomaticamente</code> (boolean)<br>
+        Si es <code>true</code>, el mini–formulario aparecerá abierto al cargar la página.
+    </li>
+    <li class="mt-1"><code>zIndice</code> (number)<br>
+        Z–index del contenedor, para garantizar que quede por encima de otros elementos.
+        Por defecto: <code>99999</code>.
+    </li>
+</ul>
+
+<hr class="my-2" />
+
+<h6 class="mb-2">3. Buenas prácticas</h6>
+
+<ul class="small ps-3 mb-2">
+    <li>Incluir <code>widget-whatsapp.js</code> una sola vez por layout/base del sitio.</li>
+    <li>Usar <code>window.CONFIGURACION_WIDGET_WHATSAPP</code> para personalizar por página
+        (número, textos, posición, campaña, etc.).</li>
+    <li>Verificar que el número configurado pertenezca al canal oficial aprobado para WhatsApp.</li>
+    <li>En páginas con mucho contenido, preferir posiciones inferiores
+        (<code>"derecha-abajo"</code> o <code>"izquierda-abajo"</code>)
+        para no tapar elementos críticos.</li>
+    <li>Si se usa en varias campañas, documentar cada configuración en el repositorio del proyecto
+        (qué página apunta a qué número, con qué mensaje).</li>
+</ul>
+
+<hr class="my-2" />
+
+<h6 class="mb-2">4. Ejemplo completo típico</h6>
+
+<pre class="small bg-light p-2 rounded mb-0"><code>&lt;!-- Raíz del widget --&gt;
+&lt;div id="widget-whatsapp-raiz"&gt;&lt;/div&gt;
+
+&lt;!-- Configuración para esta página --&gt;
+&lt;script&gt;
+    window.CONFIGURACION_WIDGET_WHATSAPP = {
+        telefono: "573218150243",
+        posicion: "derecha-abajo",
+        textoBoton: "Escríbenos por WhatsApp",
+        mensajePredeterminado: "Hola, vengo desde la página de trámites y tengo una duda.",
+        nombreMarca: "Cámara de Comercio de Santa Marta",
+        subtituloMarca: "Atención al empresario",
+        textoBienvenida: "¡Hola! ¿En qué podemos ayudarte hoy?",
+        abrirAutomaticamente: false
+    };
+&lt;/script&gt;
+
+&lt;!-- JS del widget (ruta local o CDN) --&gt;
+&lt;script src="https://cdnsicam.net/js/widget-whatsapp.js"&gt;&lt;/script&gt;</code></pre>

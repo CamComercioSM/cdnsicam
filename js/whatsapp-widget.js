@@ -50,7 +50,7 @@
         radioBorde: "25px",
         margenInferior: "6px",
         margenLateral: "6px",
-        nombreMarca: "CamComercoSM",
+        nombreMarca: "CamComercoSM", 
         subtituloMarca: "",
         imagenMarca: "https://cdnsicam.net/img/ccsm/mariposa-BLANCA.png",
         textoBienvenida: "Bienvenid@s, ¿Cómo podemos ayudarte?",
@@ -152,8 +152,8 @@
         contenedor.style.right = "";
         contenedor.style.transform = "";
 
-        var margenLateral = configuracion.margenLateral || "20px";
-        var margenInferior = configuracion.margenInferior || "20px";
+        var margenLateral = configuracion.margenLateral || "0px";
+        var margenInferior = configuracion.margenInferior || "0px";
 
         switch (posicion) {
             case "izquierda-arriba":
