@@ -10,6 +10,7 @@ body {
     font-size: 16px;
     color: #2c2c2c;
 }
+
 body a {
     color: inherit;
     text-decoration: none;
@@ -31,10 +32,13 @@ body a {
     cursor: pointer;
     outline: none;
 }
+
 .btn:last-child {
     margin-right: 0;
 }
-.btn:hover, .btn.js-active {
+
+.btn:hover,
+.btn.js-active {
     color: #fff;
     background-color: #2c2c2c;
 }
@@ -68,6 +72,7 @@ body a {
     justify-content: center;
     margin-top: 50px;
 }
+
 .content__inner1 {
     display: grid;
     grid-template-columns: repeat(3, 200px);
@@ -75,6 +80,7 @@ body a {
     justify-content: center;
     margin-top: 50px;
 }
+
 .content__inner2 {
     display: grid;
     grid-template-columns: repeat(2, 300px);
@@ -87,10 +93,12 @@ body a {
     width: 100px;
     text-align: center;
 }
+
 .icon-block .icon {
     width: 100%;
     height: 100px;
 }
+
 .icon-block svg {
     width: 100%;
     height: 100%;
@@ -99,4 +107,217 @@ body a {
 
 .icon-block__replay {
     margin-top: 15px;
+}
+
+/* --- LAYOUT CDN --- */
+.cdn-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1.5rem 3rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    box-sizing: border-box;
+}
+
+.cdn-layout__col {
+    flex: 1 1 320px;
+    min-width: 0;
+}
+
+.cdn-layout__col--left {
+    min-width: 320px;
+}
+
+.cdn-layout__col--right {
+    min-width: 360px;
+}
+
+.cdn-layout__subtitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+/* --- INSTRUCCIONES --- */
+.cdn-instructions {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    margin-bottom: 1.25rem;
+}
+
+.cdn-instructions h2,
+.cdn-instructions h3 {
+    margin-top: 0;
+    margin-bottom: 0.75rem;
+    font-size: 1.1rem;
+}
+
+.cdn-instructions p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.cdn-instructions ul {
+    padding-left: 1.3rem;
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+}
+
+/* --- ARCHIVOS --- */
+.cdn-files {
+    background: #ffffff;
+    border-radius: 1rem;
+    padding: 1.5rem 1.75rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+    margin-bottom: 1.5rem;
+}
+
+.cdn-files__header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.cdn-files__header h3 {
+    margin: 0 0 0.3rem;
+    font-size: 1.05rem;
+}
+
+.cdn-files__path {
+    margin: 0;
+    font-size: 0.85rem;
+    opacity: 0.8;
+}
+
+.cdn-files__path code {
+    font-size: 0.85rem;
+}
+
+.cdn-files__body {
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    padding-top: 0.75rem;
+}
+
+.cdn-files__panel {
+    display: none;
+}
+
+.cdn-files__panel.is-active {
+    display: block;
+}
+
+.cdn-files__panel--empty p {
+    margin: 0.25rem 0;
+    font-size: 0.9rem;
+    opacity: 0.8;
+}
+
+.cdn-files__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.cdn-files__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.45rem 0;
+    border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+}
+
+.cdn-files__item:last-child {
+    border-bottom: none;
+}
+
+.cdn-files__item a {
+    font-size: 0.9rem;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.cdn-files__item a:hover {
+    text-decoration: underline;
+}
+
+.cdn-files__tag {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 0.2rem 0.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
+/* --- WIDGETS --- */
+.cdn-widgets {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.cdn-widgets h4 {
+    margin: 0 0 0.5rem;
+    font-size: 0.95rem;
+}
+
+.cdn-widgets p {
+    margin: 0 0 0.5rem;
+    font-size: 0.85rem;
+    opacity: 0.9;
+}
+
+.cdn-widgets ul {
+    margin: 0;
+    padding-left: 1.2rem;
+    font-size: 0.85rem;
+}
+
+/* --- BOTONES DE RECURSO --- */
+.recurso-btn {
+    width: 100%;
+    margin-top: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.recurso-btn--active {
+    box-shadow: 0 0 0 2px rgba(0, 128, 255, 0.35);
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .cdn-layout {
+        flex-direction: column;
+    }
+
+    .cdn-layout__col--left,
+    .cdn-layout__col--right {
+        min-width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .cdn-files,
+    .cdn-instructions {
+        padding: 1.2rem 1.25rem;
+    }
+
+    .cdn-files__item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .cdn-files__tag {
+        margin-top: 0.2rem;
+    }
 }
