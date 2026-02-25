@@ -50,7 +50,7 @@
         radioBorde: "25px",
         margenInferior: "6px",
         margenLateral: "6px",
-        nombreMarca: "CamComercoSM", 
+        nombreMarca: "CamComercoSM",
         subtituloMarca: "",
         imagenMarca: "https://cdnsicam.net/img/ccsm/mariposa-BLANCA.png",
         textoBienvenida: "Bienvenid@s, ¿Cómo podemos ayudarte?",
@@ -101,22 +101,39 @@
     function inyectarEstilos(configuracion) {
         var css =
             "#widget-whatsapp-contenedor{" +
-                "position:fixed;" +
-                "z-index:" + configuracion.zIndice + ";" +
-                "font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;" +
+            "position:fixed;" +
+            "z-index:" + configuracion.zIndice + ";" +
+            "font-family:system-ui,-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;" +
             "}" +
             "#widget-whatsapp-boton{display:flex;align-items:center;gap:8px;padding:10px 14px;" +
-                "background:" + configuracion.fondoBoton + ";color:" + configuracion.colorTextoBoton + ";" +
-                "border-radius:" + configuracion.radioBorde + ";border:none;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.25);" +
-                "font-size:14px;font-weight:600;transition:transform .15s ease,box-shadow .15s ease;}" +
+            "background:" + configuracion.fondoBoton + ";color:" + configuracion.colorTextoBoton + ";" +
+            "border-radius:" + configuracion.radioBorde + ";border:none;cursor:pointer;box-shadow:0 4px 10px rgba(0,0,0,.25);" +
+            "font-size:14px;font-weight:600;transition:transform .15s ease,box-shadow .15s ease;}" +
             "#widget-whatsapp-boton:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.3);}" +
             "#widget-whatsapp-boton-icono{width:20px;height:20px;display:inline-block;}" +
-            "#widget-whatsapp-popup{margin-top:8px;width:280px;max-width:80vw;background:#ffffff;border-radius:16px;" +
-                "box-shadow:0 10px 25px rgba(0,0,0,.2);overflow:hidden;opacity:0;transform:translateY(10px);pointer-events:none;" +
-                "transition:opacity .18s ease,transform .18s ease;}" +
-            "#widget-whatsapp-popup.abierto{opacity:1;transform:translateY(0);pointer-events:auto;}" +
+
+
+            "#widget-whatsapp-popup{" +
+            "position:absolute;" +
+            "width:280px;" +
+            "max-width:80vw;" +
+            "background:#ffffff;" +
+            "border-radius:16px;" +
+            "box-shadow:0 10px 25px rgba(0,0,0,.2);" +
+            "overflow:hidden;" +
+            "opacity:0;" +
+            "pointer-events:none;" +
+            "transition:opacity .18s ease,transform .18s ease;" +
+            "}" +
+            "#widget-whatsapp-popup.abierto{" +
+            "opacity:1;" +
+            "pointer-events:auto;" +
+            "}" +
+
+
+
             "#widget-whatsapp-encabezado{display:flex;align-items:center;gap:10px;padding:10px 12px;background:" + configuracion.fondoBoton + ";" +
-                "color:#ffffff;}" +
+            "color:#ffffff;}" +
             "#widget-whatsapp-encabezado img{width:32px;height:32px;border-radius:50%;object-fit:cover;background:#ffffff;}" +
             "#widget-whatsapp-encabezado-texto{flex:1;}" +
             "#widget-whatsapp-encabezado-titulo{font-size:14px;font-weight:700;margin:0;}" +
@@ -125,7 +142,7 @@
             "#widget-whatsapp-cuerpo{padding:10px 12px 12px;font-size:12px;color:#333333;}" +
             "#widget-whatsapp-bienvenida{margin-bottom:6px;white-space:pre-wrap;}" +
             "#widget-whatsapp-texto{width:100%;min-height:60px;max-height:140px;resize:vertical;padding:8px 10px;border-radius:10px;" +
-                "border:1px solid #d0d0d0;font-size:12px;font-family:inherit;box-sizing:border-box;}" +
+            "border:1px solid #d0d0d0;font-size:12px;font-family:inherit;box-sizing:border-box;}" +
             "#widget-whatsapp-pie{display:flex;justify-content:flex-end;gap:8px;margin-top:8px;}" +
             ".widget-whatsapp-boton-accion{border-radius:999px;border:none;font-size:12px;padding:6px 12px;cursor:pointer;}" +
             "#widget-whatsapp-boton-cancelar{background:#f1f1f1;color:#555555;}" +
@@ -187,6 +204,55 @@
     }
 
     /**
+ * Posiciona el popup dinámicamente según la ubicación del botón
+ */
+    function aplicarPosicionPopup(contenedor, popup, configuracion) {
+        var posicion = (configuracion.posicion || "izquierda-abajo").toLowerCase();
+
+        // Reset
+        popup.style.top = "";
+        popup.style.bottom = "";
+        popup.style.left = "";
+        popup.style.right = "";
+        popup.style.transform = "";
+
+        switch (posicion) {
+
+            // BOTÓN ABAJO → POPUP ARRIBA
+            case "izquierda-abajo":
+            case "derecha-abajo":
+                popup.style.bottom = "100%";
+                popup.style.marginBottom = "8px";
+                popup.style.transform = "translateY(10px)";
+                break;
+
+            // BOTÓN ARRIBA → POPUP ABAJO
+            case "izquierda-arriba":
+            case "derecha-arriba":
+                popup.style.top = "100%";
+                popup.style.marginTop = "8px";
+                popup.style.transform = "translateY(-10px)";
+                break;
+
+            // BOTÓN CENTRO IZQUIERDA → POPUP DERECHA
+            case "izquierda-centro":
+                popup.style.left = "100%";
+                popup.style.marginLeft = "8px";
+                popup.style.top = "50%";
+                popup.style.transform = "translateY(-50%) translateX(-10px)";
+                break;
+
+            // BOTÓN CENTRO DERECHA → POPUP IZQUIERDA
+            case "derecha-centro":
+                popup.style.right = "100%";
+                popup.style.marginRight = "8px";
+                popup.style.top = "50%";
+                popup.style.transform = "translateY(-50%) translateX(10px)";
+                break;
+        }
+    }
+
+    /**
      * Construye la URL oficial de WhatsApp (https://wa.me)
      */
     function construirUrlWhatsApp(configuracion, mensaje) {
@@ -225,7 +291,7 @@
         icono.id = "widget-whatsapp-boton-icono";
         icono.innerHTML =
             '<svg viewBox="0 0 32 32" width="20" height="20" aria-hidden="true">' +
-                '<path fill="#ffffff" d="M16.04 3C9.42 3 4 8.21 4 14.64c0 2.48.81 4.78 2.19 6.66L4 29l7.89-2.06c1.81.99 3.88 1.56 6.15 1.56 6.62 0 12.04-5.21 12.04-11.64C30.08 8.21 22.66 3 16.04 3zm.01 20.74h-.01c-1.91 0-3.78-.51-5.41-1.47l-.39-.23-3.58.94.96-3.49-.25-.36a9.44 9.44 0 0 1-1.48-5.09c0-5.17 4.32-9.38 9.6-9.38 2.56 0 4.97.98 6.79 2.76a9.02 9.02 0 0 1 2.81 6.62c-.01 5.17-4.32 9.38-9.64 9.38zm5.27-6.98c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.48-2.34-1.52-.86-.8-1.44-1.79-1.61-2.09-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49l-.55-.01c-.19 0-.51.07-.77.36-.26.29-1 1-1 2.44 0 1.44 1.03 2.84 1.17 3.04.15.19 2.03 3.17 4.92 4.33.69.3 1.22.48 1.64.61.69.22 1.32.19 1.82.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.36-.07-.11-.26-.18-.55-.33z"></path>' +
+            '<path fill="#ffffff" d="M16.04 3C9.42 3 4 8.21 4 14.64c0 2.48.81 4.78 2.19 6.66L4 29l7.89-2.06c1.81.99 3.88 1.56 6.15 1.56 6.62 0 12.04-5.21 12.04-11.64C30.08 8.21 22.66 3 16.04 3zm.01 20.74h-.01c-1.91 0-3.78-.51-5.41-1.47l-.39-.23-3.58.94.96-3.49-.25-.36a9.44 9.44 0 0 1-1.48-5.09c0-5.17 4.32-9.38 9.6-9.38 2.56 0 4.97.98 6.79 2.76a9.02 9.02 0 0 1 2.81 6.62c-.01 5.17-4.32 9.38-9.64 9.38zm5.27-6.98c-.29-.15-1.7-.84-1.96-.94-.26-.1-.45-.15-.64.15-.19.29-.74.94-.91 1.13-.17.19-.34.22-.63.07-.29-.15-1.23-.48-2.34-1.52-.86-.8-1.44-1.79-1.61-2.09-.17-.29-.02-.45.13-.6.13-.13.29-.34.43-.51.15-.17.19-.29.29-.48.1-.19.05-.36-.02-.51-.07-.15-.64-1.54-.88-2.11-.23-.55-.47-.48-.64-.49l-.55-.01c-.19 0-.51.07-.77.36-.26.29-1 1-1 2.44 0 1.44 1.03 2.84 1.17 3.04.15.19 2.03 3.17 4.92 4.33.69.3 1.22.48 1.64.61.69.22 1.32.19 1.82.12.55-.08 1.7-.69 1.94-1.36.24-.67.24-1.25.17-1.36-.07-.11-.26-.18-.55-.33z"></path>' +
             "</svg>";
 
         var textoBoton = document.createElement("span");
@@ -319,6 +385,7 @@
 
         // Aplicar posición definida
         aplicarPosicion(contenedor, configuracion);
+        aplicarPosicionPopup(contenedor, popup, configuracion);
 
         // Eventos
         boton.addEventListener("click", function () {
