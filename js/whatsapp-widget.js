@@ -41,18 +41,27 @@
 
     // Configuración por defecto del widget (se puede sobrescribir desde cada página)
     var configuracionPorDefecto = {
-        telefono: "573218150243", // Número con indicativo de país, sin "+"
+        telefono: "573114147779", // Número con indicativo de país, sin "+"
         mensajePredeterminado: "Hola, me gustaría saber más de ......... [www.ccsm.org.co]",
         posicion: "izquierda-abajo", // Posición por defecto
         textoBoton: "Escríbenos 24/7",
-        fondoBoton: "#00e785",
+        mostrarIcono: true,           // true = mostrar icono
+        mostrarTexto: true,           // true = mostrar texto
+        urlIconoWhatsApp: "https://cdnsicam.net/img/whatsapp/whatsapp-logo.svg",
+
+        // Paleta oficial WhatsApp
+        colorTeal: "#128C7E",
+        colorTealDark: "#075E54",
+        colorLightGreen: "#25D366",
+        colorBlue: "#34B7F1",
+        fondoBoton: "#25D366",          // Verde principal oficial
         colorTextoBoton: "#ffffff",
         radioBorde: "25px",
         margenInferior: "6px",
         margenLateral: "6px",
         nombreMarca: "CamComercoSM",
         subtituloMarca: "",
-        imagenMarca: "https://cdnsicam.net/img/ccsm/mariposa-BLANCA.png",
+        imagenMarca: "https://cdnsicam.net/img/logo-2026-activa-tu-crecimiento.png",
         textoBienvenida: "Bienvenid@s, ¿Cómo podemos ayudarte?",
         abrirAutomaticamente: false, // true = abre el mini–formulario al cargar
         zIndice: 99999               // Prioridad de apilamiento
@@ -111,8 +120,6 @@
             "font-size:14px;font-weight:600;transition:transform .15s ease,box-shadow .15s ease;}" +
             "#widget-whatsapp-boton:hover{transform:translateY(-1px);box-shadow:0 6px 16px rgba(0,0,0,.3);}" +
             "#widget-whatsapp-boton-icono{width:20px;height:20px;display:inline-block;}" +
-
-
             "#widget-whatsapp-popup{" +
             "position:absolute;" +
             "width:280px;" +
@@ -129,9 +136,6 @@
             "opacity:1;" +
             "pointer-events:auto;" +
             "}" +
-
-
-
             "#widget-whatsapp-encabezado{display:flex;align-items:center;gap:10px;padding:10px 12px;background:" + configuracion.fondoBoton + ";" +
             "color:#ffffff;}" +
             "#widget-whatsapp-encabezado img{width:32px;height:32px;border-radius:50%;object-fit:cover;background:#ffffff;}" +
@@ -143,11 +147,18 @@
             "#widget-whatsapp-bienvenida{margin-bottom:6px;white-space:pre-wrap;}" +
             "#widget-whatsapp-texto{width:100%;min-height:60px;max-height:140px;resize:vertical;padding:8px 10px;border-radius:10px;" +
             "border:1px solid #d0d0d0;font-size:12px;font-family:inherit;box-sizing:border-box;}" +
-            "#widget-whatsapp-pie{display:flex;justify-content:flex-end;gap:8px;margin-top:8px;}" +
+            "#widget-whatsapp-pie{display:flex;justify-content:flex-end;gap:8px;margin-top:8px;padding: 5px;}" +
             ".widget-whatsapp-boton-accion{border-radius:999px;border:none;font-size:12px;padding:6px 12px;cursor:pointer;}" +
             "#widget-whatsapp-boton-cancelar{background:#f1f1f1;color:#555555;}" +
-            "#widget-whatsapp-boton-enviar{background:#25d366;color:#ffffff;font-weight:600;}" +
-            "#widget-whatsapp-boton-enviar:disabled{opacity:.6;cursor:not-allowed;}" +
+            "#widget-whatsapp-boton-enviar{" +
+            "background:" + configuracion.colorLightGreen + ";" +
+            "color:#ffffff;font-weight:600;" +
+            "}" +
+
+            "#widget-whatsapp-boton-enviar:hover{" +
+            "background:" + configuracion.colorTeal + ";" +
+            "}"
+        "#widget-whatsapp-boton-enviar:disabled{opacity:.6;cursor:not-allowed;}" +
             "@media (max-width:480px){#widget-whatsapp-popup{width:90vw;}#widget-whatsapp-boton{padding:8px 12px;font-size:13px;}}";
 
         var etiquetaEstilo = document.createElement("style");
@@ -219,17 +230,30 @@
         switch (posicion) {
 
             // BOTÓN ABAJO → POPUP ARRIBA
+
             case "izquierda-abajo":
+                popup.style.bottom = "100%";
+                popup.style.left = "0";
+                popup.style.marginBottom = "8px";
+                break;
+
             case "derecha-abajo":
                 popup.style.bottom = "100%";
+                popup.style.right = "0";
                 popup.style.marginBottom = "8px";
                 popup.style.transform = "translateY(10px)";
                 break;
 
             // BOTÓN ARRIBA → POPUP ABAJO
             case "izquierda-arriba":
+                popup.style.top = "100%";
+                popup.style.left = "0";
+                popup.style.marginTop = "8px";
+                break;
+
             case "derecha-arriba":
                 popup.style.top = "100%";
+                popup.style.right = "0";
                 popup.style.marginTop = "8px";
                 popup.style.transform = "translateY(-10px)";
                 break;
