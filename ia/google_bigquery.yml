@@ -61,6 +61,56 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ObtenerIngresosPorServicioResponse"
+  /consultarRenovadosPorRango:
+    post:
+      summary: Consultar renovaciones por rango de fechas
+      description: Consulta la cantidad de renovaciones por día en un rango de fechas específico, comparando con acumulados y diferencias interanuales.
+      operationId: consultarRenovadosPorRango
+      x-openai-isConsequential: false
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - desde
+                - hasta
+              properties:
+                desde:
+                  type: string
+                  format: date
+                  description: Fecha inicial del rango (formato yyyy-mm-dd)
+                hasta:
+                  type: string
+                  format: date
+                  description: Fecha final del rango (formato yyyy-mm-dd)
+      responses:
+        '200':
+          description: Lista de renovaciones por fecha
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    renovadosFECHA:
+                      type: string
+                      description: Fecha del registro (yyyy-mm-dd)
+                    renovadosANIO:
+                      type: integer
+                      description: Año correspondiente a la fecha
+                    renovadosTOTAL_DIA:
+                      type: integer
+                      description: Total de renovaciones en el día
+                    renovadosTOTAL_ANTES:
+                      type: integer
+                      description: Acumulado hasta el día anterior
+                    renovadosTOTAL_DIFF:
+                      type: integer
+                      description: Diferencia con el acumulado del día anterior
+
 components:
   schemas:
     BuscarRegistradosPorCIIU1Request:
@@ -212,5 +262,3 @@ components:
           type: number
           format: double
           description: Valor total recaudado por el servicio en el mes indicado. Puede venir en notación científica.
-
-    

@@ -1,0 +1,24 @@
+los datos del año actual o vigente se sacan de:
+camara-inteligente-396114.BT_REGISTROSPUBLICOS.REGISTRADOS_SII
+
+tengo los datos de los años anteriores en tabals diferentes:
+camara-inteligente-396114.BT_HISTORICOS_SII.HISTORICO_REGISTRADOS_2024
+camara-inteligente-396114.BT_HISTORICOS_SII.HISTORICO_REGISTRADOS_2023
+camara-inteligente-396114.BT_HISTORICOS_SII.HISTORICO_REGISTRADOS_2022
+camara-inteligente-396114.BT_HISTORICOS_SII.HISTORICO_REGISTRADOS_2021
+camara-inteligente-396114.BT_HISTORICOS_SII.HISTORICO_REGISTRADOS_2020
+camara-inteligente-396114.BT_HISTORICOS_SII.HISTORICO_REGISTRADOS_2019
+
+de esasa tablas debo sacar la cantidad de renovaciones diarias, para eso los renovados son aquellos que cumplen con lo siguiente:
+
+ ( `DATOS_REGISTRADOS_SII`.`matricula` <> "" ) AND ( `DATOS_REGISTRADOS_SII`.`ctrestmatricula` = "MA" OR `DATOS_REGISTRADOS_SII`.`ctrestmatricula` = "IA" ) 
+    AND ( `DATOS_REGISTRADOS_SII`.`fecmatricula` <> `DATOS_REGISTRADOS_SII`.`fecrenovacion` )
+debe tener en cuenta el 29 de febrero para algunos años. ¿como se compara?
+
+despues, usando esas tablas, quiero tener algo (tabla calculada o una vista) donde pueda acceder a los datos que se calculan diarios ,me los tenga listo para comparalos enter ellos o con el año actual 2025.
+uno de los usos seria para consulta la suma de renovaciones o renovados desde principio de año hasta el fecha que se requiera, frente al mismo acumulado del año anterior. de esa misma forma, tener una consulta que devuelva el valor de cada dia, que se uso para esa suma o acumulado.
+
+y que para el proximo año se pueda actualizar solo o con una consulta python que se ejecute el 32 de diciembre de a las 12 de la ñoche.
+
+dame todo lo que debo hacer paso por paso.
+hasta que not e confirme que hice un paso, no pasamos al otro.
