@@ -52,3 +52,7 @@ ExpiresByType application/x-javascript A432000
    php_flag zlib.output_compression On
 </IfModule>
 # END cPanel-generated php ini directives, do not edit
+
+<IfModule mod_headers.c>
+  Header set Access-Control-Allow-Origin "*"
+</IfModule>

@@ -157,8 +157,8 @@
                 "}" +
                 "#widget-whatsapp-boton-enviar:hover{" +
                 "background:" + configuracion.colorTeal + ";" +
-                "}"
-        "#widget-whatsapp-boton-enviar:disabled{opacity:.6;cursor:not-allowed;}" +
+                "}" +
+                "#widget-whatsapp-boton-enviar:disabled{opacity:.6;cursor:not-allowed;}" +
                 "@media (max-width:480px){#widget-whatsapp-popup{width:90vw;}#widget-whatsapp-boton{padding:8px 12px;font-size:13px;}}";
 
         var etiquetaEstilo = document.createElement("style");
