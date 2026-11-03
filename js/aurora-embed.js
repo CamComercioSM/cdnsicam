@@ -38,7 +38,7 @@
     timeout: positiveNumber(dataset.timeout, 12000),
     // El tiempo lo determina la carga real, no una animacion que empieza al terminar.
     loadTimeout: positiveNumber(dataset.loadTimeout || dataset.timeout, 15000),
-    minDuration: positiveNumber(dataset.minDuration, 850),
+    minDuration: positiveNumber(dataset.minDuration, 3400),
     opacity: opacityValue(dataset.opacity),
     blur: Math.min(24, positiveNumber(dataset.blur, 4)),
     camera4: flag(dataset.camera4, true),
@@ -53,11 +53,15 @@
     '.sil-loader.sil-embed-frosted[data-theme="light"]{background:rgba(255,255,255,var(--sil-embed-opacity,.78))!important;backdrop-filter:blur(var(--sil-embed-blur,4px));-webkit-backdrop-filter:blur(var(--sil-embed-blur,4px))}',
     '.sil-loader.sil-embed-frosted[data-theme="light"] .sil-copy__eyebrow{color:#536e83}',
     '.sil-loader.sil-embed-frosted[data-theme="light"] .sil-copy__hint{color:#6b7d8a}',
-    '.sil-loader.sil-embed-frosted.sil-running .sil-butterfly{animation:sil-butterfly-enter 1.1s cubic-bezier(.22,.72,.19,1) 0s forwards}',
-    '.sil-loader.sil-embed-frosted.sil-running .sil-butterfly-flight{animation:sil-butterfly-orbit 5.6s linear 1.2s infinite}',
-    '.sil-loader.sil-embed-frosted.sil-running .sil-core{animation:sil-core-arrive .45s cubic-bezier(.2,.9,.2,1) .78s forwards}'
+    // Mantenemos sin modificaciones los fotogramas originales de entrada, orbita, perlas y exito.
+    // En la edicion inyectable las alas recuperan el giro 3D claramente perceptible.
+    '.sil-loader.sil-embed-frosted.sil-running .sil-butterfly .sil-wing-left{animation:sil-embed-flap-left .24s ease-in-out infinite alternate}',
+    '.sil-loader.sil-embed-frosted.sil-running .sil-butterfly .sil-wing-right{animation:sil-embed-flap-right .24s ease-in-out infinite alternate}',
+    '@keyframes sil-embed-flap-left{from{transform:perspective(600px) rotateY(0deg) rotateZ(-1deg)}to{transform:perspective(600px) rotateY(-64deg) rotateZ(3deg)}}',
+    '@keyframes sil-embed-flap-right{from{transform:perspective(600px) rotateY(0deg) rotateZ(1deg)}to{transform:perspective(600px) rotateY(64deg) rotateZ(-3deg)}}'
   ].join('\n');
-  style.textContent = bundledCSS + '\n' + overlayCSS + (config.essentialMotion ? '\n' + motionCSS : '');
+  var essentialFlapCSS = '.sil-loader.sil-embed-frosted.sil-running .sil-butterfly .sil-wing-left{animation:sil-embed-flap-left .24s ease-in-out infinite alternate!important}.sil-loader.sil-embed-frosted.sil-running .sil-butterfly .sil-wing-right{animation:sil-embed-flap-right .24s ease-in-out infinite alternate!important}';
+  style.textContent = bundledCSS + '\n' + overlayCSS + (config.essentialMotion ? '\n' + motionCSS + '\n' + essentialFlapCSS : '');
   (document.head || document.documentElement).appendChild(style);
 
   // BIBLIOTECA ORIGINAL: SystemLoader (SVG, CSS y Canvas sin dependencias).
@@ -1162,7 +1166,7 @@
   }
 
   window.AuroraEmbed = {
-    version: '1.0.7',
+    version: '1.0.8',
     options: config,
     show: function show(options) {
       if (mounted) return window.SystemLoader.show(options || {});
