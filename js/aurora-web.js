@@ -40,7 +40,14 @@
     'html[data-aurora-web-only="1"] .sil-loader .sil-copy__message',
     '{font-weight:650;letter-spacing:-.025em}',
     'html[data-aurora-web-only="1"] .sil-loader .sil-loader__content',
-    '{gap:0!important}'
+    '{gap:0!important}',
+    // La fase inicial conserva su CSS. Solo igualamos el aleteo del motor posterior.
+    'html[data-aurora-web-only="1"] .sil-loader.sil-embed-frosted.sil-running .sil-butterfly .sil-wing-left',
+    '{animation:aurora-web-flap-left .26s ease-in-out infinite alternate!important}',
+    'html[data-aurora-web-only="1"] .sil-loader.sil-embed-frosted.sil-running .sil-butterfly .sil-wing-right',
+    '{animation:aurora-web-flap-right .26s ease-in-out infinite alternate!important}',
+    '@keyframes aurora-web-flap-left{from{transform:scaleX(1) rotate(-1deg)}to{transform:scaleX(.46) rotate(4deg)}}',
+    '@keyframes aurora-web-flap-right{from{transform:scaleX(1) rotate(1deg)}to{transform:scaleX(.46) rotate(-4deg)}}'
   ].join('');
   (document.head || document.documentElement).appendChild(webStyle);
 
