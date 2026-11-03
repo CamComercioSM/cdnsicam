@@ -24,15 +24,23 @@
     return Number.isFinite(parsed) && parsed >= 0 ? parsed : fallback;
   }
 
+  function opacityValue(value) {
+    var number = Number(value);
+    return Number.isFinite(number) ? Math.min(1, Math.max(0, number)) : 0.78;
+  }
+
   var config = {
     auto: String(dataset.auto || 'none').toLowerCase().replace(/\s+/g, ''),
-    theme: /^(dark|light|auto)$/.test(dataset.theme || '') ? dataset.theme : 'dark',
+    theme: /^(dark|light|auto)$/.test(dataset.theme || '') ? dataset.theme : 'light',
     eyebrow: dataset.eyebrow || 'Camara de Comercio de Santa Marta',
     message: dataset.message || 'Cargando informacion',
     detail: dataset.detail || 'Preparando la siguiente pagina.',
     timeout: positiveNumber(dataset.timeout, 12000),
-    pageDuration: positiveNumber(dataset.pageDuration, 3100),
-    minDuration: positiveNumber(dataset.minDuration, 350),
+    // El tiempo lo determina la carga real, no una animacion que empieza al terminar.
+    loadTimeout: positiveNumber(dataset.loadTimeout || dataset.timeout, 15000),
+    minDuration: positiveNumber(dataset.minDuration, 850),
+    opacity: opacityValue(dataset.opacity),
+    blur: Math.min(24, positiveNumber(dataset.blur, 4)),
     camera4: flag(dataset.camera4, true),
     sound: flag(dataset.sound, false),
     essentialMotion: dataset.motion === 'essential'
@@ -41,7 +49,15 @@
   var style = document.createElement('style');
   style.setAttribute('data-aurora-embed-style', '1');
   if (installScript && installScript.nonce) style.nonce = installScript.nonce;
-  style.textContent = bundledCSS + (config.essentialMotion ? '\n' + motionCSS : '');
+  var overlayCSS = [
+    '.sil-loader.sil-embed-frosted[data-theme="light"]{background:rgba(255,255,255,var(--sil-embed-opacity,.78))!important;backdrop-filter:blur(var(--sil-embed-blur,4px));-webkit-backdrop-filter:blur(var(--sil-embed-blur,4px))}',
+    '.sil-loader.sil-embed-frosted[data-theme="light"] .sil-copy__eyebrow{color:#536e83}',
+    '.sil-loader.sil-embed-frosted[data-theme="light"] .sil-copy__hint{color:#6b7d8a}',
+    '.sil-loader.sil-embed-frosted.sil-running .sil-butterfly{animation:sil-butterfly-enter 1.1s cubic-bezier(.22,.72,.19,1) 0s forwards}',
+    '.sil-loader.sil-embed-frosted.sil-running .sil-butterfly-flight{animation:sil-butterfly-orbit 5.6s linear 1.2s infinite}',
+    '.sil-loader.sil-embed-frosted.sil-running .sil-core{animation:sil-core-arrive .45s cubic-bezier(.2,.9,.2,1) .78s forwards}'
+  ].join('\n');
+  style.textContent = bundledCSS + '\n' + overlayCSS + (config.essentialMotion ? '\n' + motionCSS : '');
   (document.head || document.documentElement).appendChild(style);
 
   // BIBLIOTECA ORIGINAL: SystemLoader (SVG, CSS y Canvas sin dependencias).
@@ -986,6 +1002,9 @@
 
   var navigationTimer = null;
   var initialTimer = null;
+  var pageSafetyTimer = null;
+  var pageStartedAt = null;
+  var initialActive = false;
   var mounted = false;
   var autoModes = config.auto === 'all' ? ['page', 'links', 'forms'] :
     config.auto === 'navigation' ? ['links', 'forms'] : config.auto.split(',');
@@ -1004,8 +1023,38 @@
     navigationTimer = null;
   }
 
+  function clearPageTimers() {
+    if (initialTimer !== null) window.clearTimeout(initialTimer);
+    if (pageSafetyTimer !== null) window.clearTimeout(pageSafetyTimer);
+    initialTimer = null;
+    pageSafetyTimer = null;
+  }
+
+  function dismissEarlySplash() {
+    var boot = window.__AuroraHeadBoot;
+    if (boot && typeof boot.hide === 'function') boot.hide();
+  }
+
+  function finishInitialLoad() {
+    if (!initialActive) return;
+    if (pageSafetyTimer !== null) window.clearTimeout(pageSafetyTimer);
+    pageSafetyTimer = null;
+    var elapsed = window.performance.now() - pageStartedAt;
+    initialTimer = window.setTimeout(function closeWhenReady() {
+      initialTimer = null;
+      if (!initialActive) return;
+      initialActive = false;
+      if (navigationTimer === null && window.SystemLoader.controller &&
+          window.SystemLoader.controller.isVisible) {
+        window.SystemLoader.hide({ immediate: false });
+      }
+    }, Math.max(0, config.minDuration - elapsed));
+  }
+
   function showForNavigation() {
     if (!mounted) return;
+    initialActive = false;
+    clearPageTimers();
     clearNavigationTimer();
     window.SystemLoader.show({
       eyebrow: config.eyebrow,
@@ -1065,8 +1114,9 @@
 
   function hideOnPageRestore() {
     clearNavigationTimer();
-    if (initialTimer !== null) window.clearTimeout(initialTimer);
-    initialTimer = null;
+    initialActive = false;
+    clearPageTimers();
+    dismissEarlySplash();
     if (window.SystemLoader.controller && window.SystemLoader.controller.isVisible) {
       window.SystemLoader.hide({ immediate: true });
     }
@@ -1075,18 +1125,23 @@
   function install() {
     if (mounted) return;
     mounted = true;
-    window.SystemLoader.configure({
+    var controller = window.SystemLoader.configure({
       eyebrow: config.eyebrow,
       theme: config.theme,
       minDuration: config.minDuration
     });
+    controller.root.classList.add('sil-embed-frosted');
+    controller.root.style.setProperty('--sil-embed-opacity', String(config.opacity));
+    controller.root.style.setProperty('--sil-embed-blur', String(config.blur) + 'px');
 
     if (autoHas('links')) document.addEventListener('click', handleLinkClick, false);
     if (autoHas('forms')) document.addEventListener('submit', handleFormSubmit, false);
 
-    // Modo presentacion inicial: funciona tambien si PageGear inyecta el script
-    // despues de que la pagina ya termino de cargar.
-    if (autoHas('page')) {
+    // Solo se muestra durante la carga real de la pagina. Una inyeccion tardia
+    // (por ejemplo desde FOOTER o un gestor de etiquetas) no crea un loader extemporaneo.
+    if (autoHas('page') && document.readyState !== 'complete') {
+      initialActive = true;
+      pageStartedAt = window.performance.now();
       window.SystemLoader.show({
         eyebrow: config.eyebrow,
         theme: config.theme,
@@ -1094,13 +1149,12 @@
         detail: 'Preparando el portal.',
         minDuration: config.minDuration
       });
-      initialTimer = window.setTimeout(function finishInitialPresentation() {
-        initialTimer = null;
-        if (window.SystemLoader.controller && window.SystemLoader.controller.isVisible) {
-          window.SystemLoader.hide({ immediate: false });
-        }
-      }, config.pageDuration);
+      window.addEventListener('load', finishInitialLoad, { once: true });
+      pageSafetyTimer = window.setTimeout(finishInitialLoad, Math.max(2000, config.loadTimeout));
     }
+    // La precarga ligera se retira solo despues de montar la animacion real,
+    // o si el sitio ya habia terminado de cargar al instalar el script.
+    dismissEarlySplash();
     window.addEventListener('pageshow', function onPageShow(event) {
       if (event.persisted) hideOnPageRestore();
     });
@@ -1108,7 +1162,7 @@
   }
 
   window.AuroraEmbed = {
-    version: '1.0.6',
+    version: '1.0.7',
     options: config,
     show: function show(options) {
       if (mounted) return window.SystemLoader.show(options || {});
@@ -1119,10 +1173,13 @@
     progress: function progress(value, options) { return window.SystemLoader.progress(value, options || {}); },
     finish: function finish(options) { clearNavigationTimer(); return window.SystemLoader.finish(options || {}); },
     fail: function fail(options) { clearNavigationTimer(); return window.SystemLoader.fail(options || {}); },
-    hide: function hide(options) { clearNavigationTimer(); return window.SystemLoader.hide(options || {}); },
+    hide: function hide(options) { clearNavigationTimer(); initialActive = false; clearPageTimers(); dismissEarlySplash(); return window.SystemLoader.hide(options || {}); },
     wrap: function wrap(task, options) { return window.SystemLoader.wrap(task, options || {}); },
     configure: function configure(options) { return window.SystemLoader.configure(options || {}); }
   };
 
-  onReady(install);
+  // Si el BODY ya existe, iniciar antes de DOMContentLoaded evita esperar a
+  // que PageGear cargue widgets y terceros innecesariamente.
+  if (document.body) install();
+  else onReady(install);
 })(window, document);
